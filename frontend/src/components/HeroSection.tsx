@@ -4,7 +4,7 @@ import apple_logo from '../assets/Apple_gray_logo.png'
 import hero_frame from '../assets/hero_endframe_large.png'
 const HeroSection = () => {
   return (
-    <div className='mt-8 sm:mt-12 lg:mt-16 px-4 sm:px-6 lg:px-8'>
+    <div className='mt-8 sm:mt-12 lg:mt-16 px-4 sm:px-6 lg:px-8 '>
       <div className='max-w-7xl mx-auto flex flex-col lg:flex-row gap-4 lg:gap-8'>
         
         {/* Categories Sidebar */}
