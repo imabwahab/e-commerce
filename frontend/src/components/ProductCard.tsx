@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import type { Product } from "../assets/assets";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 interface ProductCardProps {
   product: Product
@@ -14,17 +16,31 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [count, setCount] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const navigate = useNavigate();
+
+  const { toggleWishList, wishList } = useContext(AppContext);
+
+  const inWishList = wishList[product._id] === true;
+
 
   const discount =
     product.price && product.price > product.offerPrice!
       ? Math.round(((product.price - product.offerPrice!) / product.price) * 100)
       : null;
 
+  const HandleFavorite = (id: string) => {
+    setIsFavorite(!isFavorite);
+    toggleWishList(id)
+  }
+
   return (
-    <div className="bg-white transition-all duration-300  min-w-[240px] max-w-[300px] w-full  overflow-hidden">
+    <div
+
+      className="bg-white transition-all duration-300  min-w-[240px] max-w-[300px] w-full  overflow-hidden">
       {/* Image Section */}
       <div className="group cursor-pointer relative flex items-center justify-center w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden rounded-md">
         <img
+          onClick={() => navigate(`/products/${product.category.toLowerCase()}/${product._id}`)}
           className="group-hover:scale-110 transition-transform duration-500 ease-out max-w-60  md:max-w-65 object-contain"
           src={product.image}
           alt={product.name}
@@ -33,10 +49,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Action Icons */}
         <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
           <button
-            onClick={() => setIsFavorite(!isFavorite)}
+            onClick={() => HandleFavorite(product._id)}
             className="bg-white hover:bg-red-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95"
           >
-            {isFavorite ? (
+            {inWishList ? (
               <IoMdHeart className="text-xl text-red-500" />
             ) : (
               <IoMdHeartEmpty className="text-xl text-gray-700" />

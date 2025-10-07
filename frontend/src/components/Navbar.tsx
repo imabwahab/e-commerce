@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CiHeart } from "react-icons/ci";
-import { MdAddShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose, IoIosSearch } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const { wishList, navigate } = useContext(AppContext);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -48,17 +51,18 @@ const Navbar = () => {
 
             <ul className="hidden lg:flex items-center gap-8 text-gray-700 font-medium">
               {navLinks.map((item, index) => (
-                <Link
+                <NavLink
+                  key={index}
                   to={item.path}
-                  key={index}>
-                  <li
-                    className="relative cursor-pointer group transition-all duration-200"
-                  >
-                    <span className="hover:text-red-600">{item.name}</span>
+                  className={({ isActive }) =>
+                    `relative cursor-pointer transition-all duration-200 ${isActive ? 'text-red-600 font-semibold' : 'text-gray-700'
+                    }`
+                  }
+                >
+                  <span className="hover:text-red-600">{item.name}</span>
+                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
+                </NavLink>
 
-                    <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
-                  </li>
-                </Link>
               ))}
             </ul>
 
@@ -83,13 +87,23 @@ const Navbar = () => {
               </button>
 
               {/* Wishlist Icon */}
-              <button className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
+              <button
+                onClick={() => navigate('/wishlist')}
+                className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
                 <CiHeart className="w-6 h-6" />
+                <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  {Object.values(wishList).filter((val) => val===true).length}
+                </span>
               </button>
 
               {/* Cart Icon */}
-              <button className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
-                <MdAddShoppingCart className="w-6 h-6" />
+              <button
+                onClick={() => navigate('/cart')}
+                className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
+                <MdOutlineShoppingCart className="w-6 h-6" />
+                <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  {Object.keys(wishList).length}
+                </span>
               </button>
 
               {/* Mobile Menu Button */}
