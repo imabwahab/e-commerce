@@ -1,6 +1,7 @@
-import React from 'react'
+
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { categories } from '../assets/assets';
+import { Link } from 'react-router-dom';
 
 const Categories = () => {
   return (
@@ -31,21 +32,23 @@ const Categories = () => {
       {/* Categories Grid */}
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6'>
         {categories.map((cat, index) => (
-          <div 
-            key={index}
-            className='group bg-white border-2 border-gray-200 rounded-lg p-6 flex flex-col gap-4 items-center justify-center hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer min-h-[180px]'
-          >
-            <div className='w-16 h-16 flex items-center justify-center overflow-hidden'>
-              <img 
-                src={cat.image} 
-                className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300' 
-                alt={cat.title} 
-              />
+          <Link to={cat.path}>
+            <div
+              key={index}
+              className='group bg-white border-2 border-gray-200 rounded-lg p-6 flex flex-col gap-4 items-center justify-center hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer min-h-[180px]'
+            >
+              <div className='w-16 h-16 flex items-center justify-center overflow-hidden'>
+                <img
+                  src={cat.image}
+                  className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
+                  alt={cat.title}
+                />
+              </div>
+              <h3 className='text-base font-medium text-gray-900 group-hover:text-red-500 transition-colors duration-300 text-center'>
+                {cat.title}
+              </h3>
             </div>
-            <h3 className='text-base font-medium text-gray-900 group-hover:text-red-500 transition-colors duration-300 text-center'>
-              {cat.title}
-            </h3>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

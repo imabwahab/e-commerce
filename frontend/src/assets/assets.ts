@@ -8,46 +8,23 @@ import cat_watch from '../assets/Category-SmartWatch.png'
 
 interface Category {
   title: string,
-  image: string
+  image: string,
+  path: string
 }
 
 export const categories: Category[] = [
-  { title: 'Phones', image: cat_phone },
-  { title: "Camera", image: cat_camera },
-  { title: 'Computers', image: cat_computer },
-  { title: 'Gaming', image: cat_gamepad },
-  { title: 'HeadPhones', image: cat_headphone },
-  { title: 'SmartWatch', image: cat_watch }
+  { title: 'Phones', image: cat_phone, path: '/phones' },
+  { title: "Camera", image: cat_camera, path: '/camera' },
+  { title: 'Computers', image: cat_computer, path: 'computers' },
+  { title: 'Gaming', image: cat_gamepad, path: '/gaming' },
+  { title: 'HeadPhones', image: cat_headphone, path: '/headphones' },
+  { title: 'SmartWatch', image: cat_watch, path: '/smartwatch' }
 ];
 
 
-/*
-{
-    _id: "gd46g23h",
-    name: "Potato 500g",
-    category: "Vegetables",
-    price: 25,
-    offerPrice: 20,
-    image: [potato_image_1, potato_image_2, potato_image_3, potato_image_4],
-    description: [
-      "Fresh and organic",
-      "Rich in carbohydrates",
-      "Ideal for curries and fries",
-    ],
-    createdAt: "2025-03-25T07:17:46.018Z",
-    updatedAt: "2025-03-25T07:18:13.103Z",
-    inStock: true,
 
-    const product = {
-    name: "Casual Shoes",
-    category: "Sports",
-    price: 100,
-    offerPrice: 80,
-    rating: 4,
-    image: keyboard,
-  };
-  },
-*/import north_coat from '../assets/north-coat.png'
+
+import north_coat from '../assets/north-coat.png'
 import gucci_bag from '../assets/gucci-duffle-bag.png'
 import cpu_cooler from '../assets/gammax-argb.png'
 import book_self from '../assets/book-shelf.png'

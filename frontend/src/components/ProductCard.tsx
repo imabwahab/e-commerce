@@ -115,7 +115,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               />
             ))}
           </div>
-          <span className="text-gray-600 text-sm font-medium">({product.rating}.0)</span>
+          <span className="text-gray-600 text-sm font-medium">({product.rating})</span>
         </div>
 
 
