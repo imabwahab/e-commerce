@@ -1,9 +1,15 @@
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { categories } from '../assets/assets';
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const Categories = () => {
+
+  const { navigate } = useContext(AppContext);
+  const HandleCategoryClick = (path: string) => {
+    navigate(`/products/${path}`)
+  }
   return (
     <div className='w-full mt-16 mb-20 px-4 sm:px-6 lg:px-8'>
       {/* Section Header */}
@@ -32,7 +38,7 @@ const Categories = () => {
       {/* Categories Grid */}
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6'>
         {categories.map((cat, index) => (
-          <Link to={cat.path}>
+          <div onClick={() => HandleCategoryClick(cat.path)}>
             <div
               key={index}
               className='group bg-white border-2 border-gray-200 rounded-lg p-6 flex flex-col gap-4 items-center justify-center hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer min-h-[180px]'
@@ -48,7 +54,7 @@ const Categories = () => {
                 {cat.title}
               </h3>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

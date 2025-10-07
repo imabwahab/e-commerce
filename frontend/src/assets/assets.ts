@@ -8,8 +8,8 @@ export const navLinks: Navbar[] = [{
   name: "Home",
   path: '/'
 }, {
-  name: 'All Products', 
-  path:'/products'
+  name: 'All Products',
+  path: '/products'
 }, {
   name: "About",
   path: '/about'
@@ -18,7 +18,7 @@ export const navLinks: Navbar[] = [{
   path: '/contact'
 }, {
   name: "SignUp",
-  path: 'signup'
+  path: '/signup'
 }]
 
 
@@ -38,12 +38,12 @@ interface Category {
 }
 
 export const categories: Category[] = [
-  { title: 'Phones', image: cat_phone, path: '/phones' },
-  { title: "Camera", image: cat_camera, path: '/camera' },
+  { title: 'Phones', image: cat_phone, path: 'phones' },
+  { title: "Camera", image: cat_camera, path: 'camera' },
   { title: 'Computers', image: cat_computer, path: 'computers' },
-  { title: 'Gaming', image: cat_gamepad, path: '/gaming' },
-  { title: 'HeadPhones', image: cat_headphone, path: '/headphones' },
-  { title: 'SmartWatch', image: cat_watch, path: '/smartwatch' }
+  { title: 'Gaming', image: cat_gamepad, path: 'gaming' },
+  { title: 'HeadPhones', image: cat_headphone, path: 'headphones' },
+  { title: 'SmartWatch', image: cat_watch, path: 'smartwatch' }
 ];
 
 
@@ -61,6 +61,9 @@ import mercedes_kids_car from '../assets/mercedes-kids-car.png'
 import soccer_cleats from '../assets/soccer-cleats.png'
 import shooter_gamepad from '../assets/shooter-usb-gamepad.png'
 import quilted_jacket from '../assets/quilted-satlin-jacket.png'
+import havit_gamepad from '../assets/havit-gamepad.png'
+import IPS_LCD from '../assets/lcd.png'
+import comfort_chair from '../assets/comfort-chair.png'
 
 // Define the product interface
 export interface Product {
@@ -124,7 +127,7 @@ export const products: Product[] = [
     image: book_self,
     inStock: true,
     isBestSelling: false,
-    isOnSale: true,
+    isOnSale: false,
   },
   {
     _id: "prd-005",
@@ -136,7 +139,7 @@ export const products: Product[] = [
     image: breed_dog_food,
     inStock: true,
     isBestSelling: false,
-    isOnSale: true,
+    isOnSale: false,
   },
   {
     _id: "prd-006",
@@ -148,7 +151,7 @@ export const products: Product[] = [
     image: canon_camera,
     inStock: true,
     isBestSelling: true,
-    isOnSale: false,
+    isOnSale: true,
   },
   {
     _id: "prd-007",
@@ -160,7 +163,7 @@ export const products: Product[] = [
     image: asus_laptop,
     inStock: true,
     isBestSelling: true,
-    isOnSale: true,
+    isOnSale: false,
   },
   {
     _id: "prd-008",
@@ -220,6 +223,40 @@ export const products: Product[] = [
     image: quilted_jacket,
     inStock: true,
     isBestSelling: false,
+    isOnSale: true,
+  }, {
+    _id: "prd-013",
+    name: "HAVIT HV-G92 Gamepad",
+    category: "Gaming",
+    price: 160,
+    offerPrice: 130,
+    rating: 4.6,
+    image: havit_gamepad,
+    inStock: true,
+    isBestSelling: true,
+    isOnSale: true,
+  },
+  {
+    _id: "prd-014",
+    name: "IPS LCD Gaming Monitor",
+    category: "Gaming",
+    price: 50,
+    offerPrice: 40,
+    rating: 4.6,
+    image: IPS_LCD,
+    inStock: true,
+    isBestSelling: true,
+    isOnSale: true,
+  }, {
+    _id: "prd-015",
+    name: "S-Series Comfort Chair",
+    category: "Furniture",
+    price: 400,
+    offerPrice: 375,
+    rating: 4.6,
+    image: comfort_chair,
+    inStock: true,
+    isBestSelling: true,
     isOnSale: true,
   },
 ];

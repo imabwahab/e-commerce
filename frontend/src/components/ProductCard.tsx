@@ -13,12 +13,11 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
-  const [count, setCount] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const navigate = useNavigate();
 
-  const { toggleWishList, wishList } = useContext(AppContext);
+  const { toggleWishList, wishList, cartItems, addToCart, removeFromCart } = useContext(AppContext);
 
   const inWishList = wishList[product._id] === true;
 
@@ -50,12 +49,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
           <button
             onClick={() => HandleFavorite(product._id)}
-            className="bg-white hover:bg-red-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95"
+            className="bg-white hover:bg-red-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95  cursor-pointer"
           >
             {inWishList ? (
               <IoMdHeart className="text-xl text-red-500" />
             ) : (
-              <IoMdHeartEmpty className="text-xl text-gray-700" />
+              <IoMdHeartEmpty className="text-xl text-gray-700 " />
             )}
           </button>
           <button className="bg-white hover:bg-blue-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95">
@@ -64,7 +63,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Discount Badge */}
-        {discount !== null && (
+        {product.isOnSale  && (
           <span className="bg-red-500 absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-md">
             -{discount}%
           </span>
@@ -73,10 +72,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Add to Cart Button - Enhanced */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
-          {count === 0 ? (
+          {!cartItems[product._id] ? (
             <button
               className="flex items-center justify-center gap-2 w-full bg-black hover:bg-gray-900 active:bg-gray-800 h-12 text-white font-semibold transition-all duration-200 transform active:scale-[0.98]"
-              onClick={() => setCount(1)}
+              onClick={() => addToCart(product._id)}
             >
               <MdOutlineShoppingCart />
               Add To Cart
@@ -85,14 +84,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="flex items-center justify-center w-full bg-black h-12">
               <div className="flex items-center justify-between bg-white rounded-lg mx-4 px-1 py-1 shadow-inner">
                 <button
-                  onClick={() => setCount((prev) => Math.max(prev - 1, 0))}
+                  onClick={() => removeFromCart(product._id)}
                   className="flex items-center justify-center w-9 h-9 cursor-pointer text-xl font-bold text-gray-700 hover:bg-gray-100 active:bg-gray-200 rounded-md transition-all duration-150"
                 >
                   −
                 </button>
-                <span className="font-bold text-lg px-4 text-gray-800 min-w-[40px] text-center">{count}</span>
+                <span className="font-bold text-lg px-4 text-gray-800 min-w-[40px] text-center">{cartItems[product._id]}</span>
                 <button
-                  onClick={() => setCount((prev) => prev + 1)}
+                  onClick={() => addToCart(product._id)}
                   className="flex items-center justify-center w-9 h-9 cursor-pointer text-xl font-bold text-gray-700 hover:bg-gray-100 active:bg-gray-200 rounded-md transition-all duration-150"
                 >
                   +
@@ -112,10 +111,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Price */}
         <div className="flex items-center gap-3 pt-1">
           <p className="text-3xl font-bold text-gray-900">
-            ${product.offerPrice}
+            ${product.isOnSale ? product.offerPrice: product?.price}
           </p>
           {
-            product.price && <p className="text-gray-400 text-lg line-through">
+            product.isOnSale && product.price && <p className="text-gray-400 text-lg line-through">
               ${product.price}
             </p>
           }

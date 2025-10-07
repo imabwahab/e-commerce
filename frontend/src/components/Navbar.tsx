@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const { wishList, navigate } = useContext(AppContext);
+  const { wishList, navigate, cartItems } = useContext(AppContext);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -102,7 +102,7 @@ const Navbar = () => {
                 className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
                 <MdOutlineShoppingCart className="w-6 h-6" />
                 <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  {Object.keys(wishList).length}
+                  {Object.values(cartItems).reduce((acc, cur)=> acc + cur, 0)}
                 </span>
               </button>
 

@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { AppContext } from "../context/AppContext"
 import { products } from "../assets/assets";
 import ProductCard from "../components/ProductCard";
+import { FaRegHeart } from "react-icons/fa";
 
 
 const WishList = () => {
@@ -9,6 +10,20 @@ const WishList = () => {
   const { wishList } = useContext(AppContext);
 
   const wishListProducts = products.filter((item) => wishList[item._id] === true);
+
+  if (wishListProducts.length === 0) {
+    return (
+      <div className='w-full max-w-7xl mx-auto mt-32 mb-20 px-4 sm:px-6 lg:px-8'>
+        <div className='flex flex-col items-center justify-center py-20'>
+          <FaRegHeart className='w-24 h-24 text-gray-300 mb-4' />
+          <h2 className='text-2xl font-semibold text-gray-700 mb-2'>Your wish list is empty</h2>
+          <p className='text-gray-500'>Add some products to get started!</p>
+        </div>
+      </div>
+    );
+  }
+
+
   return (
     <div className='max-w-7xl mx-auto w-full mt-32 mb-20 px-4 sm:px-6 lg:px-8'>
       {/* Section Header */}

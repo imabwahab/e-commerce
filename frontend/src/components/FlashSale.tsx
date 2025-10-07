@@ -31,7 +31,7 @@ const FlashSale = () => {
       <div className=' grid gap-4  justify-items-center px-auto py-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {products
           .filter((product) => product.isOnSale === true)
-          .slice(0, 4)
+          .slice(0, 9)
           .map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
