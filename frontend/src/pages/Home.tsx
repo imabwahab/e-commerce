@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import Categories from '../components/Categories'
 import BestSelling from '../components/BestSelling'
 import FlashSale from '../components/FlashSale'
+import NewArrival from '../components/NewArrival'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <FlashSale />
         <Categories />
         <BestSelling />
+        <NewArrival />
       </div>
 
       <Footer />

@@ -199,3 +199,32 @@ export const products: Product[] = [
   },
 ];
 
+import perfume from '../assets/perfume-gucci.png'
+import playstation from '../assets/ps5-slim-goedkope-playstation.png'
+import woman_hat from '../assets/woman-black-hat.png'
+import speaker from '../assets/speaker-amazon.png'
+
+interface NewArrival {
+  productName: string,
+  description: string,
+  image: string
+}
+
+export const newArrivals: NewArrival[] = [{
+  productName: 'PlayStation 5',
+  description: 'Black and White version of the PS5 coming out on sale.',
+  image: playstation
+}, {
+  productName: "Woman's Collections ",
+  description: 'Featured woman collections that give you another vibe.',
+  image: woman_hat
+}, {
+  productName: 'Speakers',
+  description: 'Amazon wireless speakers',
+  image: speaker
+}, {
+  productName: 'Perfume',
+  description: 'GUCCI INTENSE OUD EDP',
+  image: perfume
+}]
+
