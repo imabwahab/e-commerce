@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full font-sans fixed top-0 left-0 right-0">
+    <div className="w-full font-sans fixed top-0 left-0 right-0 z-[500]">
       {/*  Top Bar */}
       <div className="bg-black text-white text-xs sm:text-sm py-2 px-4">
         <div className="max-w-7xl mx-auto flex justify-between sm:justify-around items-center gap-2 sm:gap-4 flex-wrap">
