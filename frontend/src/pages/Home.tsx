@@ -2,6 +2,7 @@ import React from 'react'
 import HeroSection from '../components/HeroSection'
 import Footer from '../components/Footer'
 import Categories from '../components/Categories'
+import BestSelling from '../components/BestSelling'
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <div className='max-w-7xl mx-auto'>
         <HeroSection />
         <Categories />
+        <BestSelling />
       </div>
 
       <Footer />

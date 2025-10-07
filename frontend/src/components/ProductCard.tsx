@@ -1,24 +1,24 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import keyboard from '../assets/keyboard.png'
+import type { Product } from "../assets/assets";
 
-const ProductCard = () => {
+interface ProductCardProps {
+  product: Product
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+
   const [count, setCount] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const product = {
-    name: "Casual Shoes",
-    category: "Sports",
-    price: 100,
-    offerPrice: 80,
-    rating: 4,
-    image: keyboard,
-  };
 
-  const discount = Math.round(((product.price - product.offerPrice) / product.price) * 100);
+  const discount =
+    product.price && product.price > product.offerPrice!
+      ? Math.round(((product.price - product.offerPrice!) / product.price) * 100)
+      : null;
 
   return (
     <div className="bg-white transition-all duration-300  min-w-[240px] max-w-[300px] w-full  overflow-hidden">
@@ -48,11 +48,12 @@ const ProductCard = () => {
         </div>
 
         {/* Discount Badge */}
-        <div className="absolute top-4 left-4 z-10">
-          <span className="bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-md">
+        {discount !== null && (
+          <span className="bg-red-500 absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-md">
             -{discount}%
           </span>
-        </div>
+        )}
+
 
         {/* Add to Cart Button - Enhanced */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
@@ -92,6 +93,18 @@ const ProductCard = () => {
           {product.name}
         </h3>
 
+        {/* Price */}
+        <div className="flex items-center gap-3 pt-1">
+          <p className="text-3xl font-bold text-gray-900">
+            ${product.offerPrice}
+          </p>
+          {
+            product.price && <p className="text-gray-400 text-lg line-through">
+              ${product.price}
+            </p>
+          }
+        </div>
+
         {/* Rating */}
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-0.5">
@@ -105,17 +118,9 @@ const ProductCard = () => {
           <span className="text-gray-600 text-sm font-medium">({product.rating}.0)</span>
         </div>
 
-        {/* Price */}
-        <div className="flex items-center gap-3 pt-1">
-          <p className="text-3xl font-bold text-gray-900">
-            ${product.offerPrice}
-          </p>
-          <p className="text-gray-400 text-lg line-through">
-            ${product.price}
-          </p>
-        </div>
 
-       
+
+
       </div>
     </div>
   );
