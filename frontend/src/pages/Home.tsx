@@ -1,14 +1,13 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
-    <div className='py-20'>
-      <Navbar />
+    <div className='pt-20'>
       <HeroSection />
+      <Footer />
 
-      
     </div>
   )
 }
