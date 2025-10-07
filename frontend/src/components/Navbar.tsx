@@ -4,6 +4,7 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose, IoIosSearch } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { navLinks } from "../assets/assets";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,14 +47,14 @@ const Navbar = () => {
 
 
             <ul className="hidden lg:flex items-center gap-8 text-gray-700 font-medium">
-              {["Home", "About", "Contact", "SignUp"].map((item, index) => (
+              {navLinks.map((item, index) => (
                 <Link
-                  to={(item !== "Home" ? `/${item.toLowerCase()}` : '/')}
+                  to={item.path}
                   key={index}>
                   <li
                     className="relative cursor-pointer group transition-all duration-200"
                   >
-                    <span className="hover:text-red-600">{item}</span>
+                    <span className="hover:text-red-600">{item.name}</span>
 
                     <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
                   </li>

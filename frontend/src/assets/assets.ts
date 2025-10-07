@@ -1,3 +1,28 @@
+// Navbar links
+interface Navbar {
+  name: string,
+  path: string
+}
+
+export const navLinks: Navbar[] = [{
+  name: "Home",
+  path: '/'
+}, {
+  name: 'All Products', 
+  path:'/products'
+}, {
+  name: "About",
+  path: '/about'
+}, {
+  name: "Contact",
+  path: '/contact'
+}, {
+  name: "SignUp",
+  path: 'signup'
+}]
+
+
+
 // Categories pic's
 import cat_camera from '../assets/Category-Camera.png'
 import cat_computer from '../assets/Category-Computer.png'
