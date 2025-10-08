@@ -34,7 +34,7 @@ const Cart = () => {
         {/* Section Header */}
         <div className='mb-8'>
           <div className='flex items-center gap-3 mb-2'>
-            <span className='w-1 h-8 bg-red-500 rounded-full'></span>
+            <span className='w-2 h-8 bg-red-500 rounded-full'></span>
             <p className='text-red-500 font-semibold text-sm uppercase tracking-wide'>Shopping Cart</p>
           </div>
         </div>

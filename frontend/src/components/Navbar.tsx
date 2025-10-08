@@ -57,7 +57,7 @@ const Navbar = () => {
                   key={index}
                   to={item.path}
                   className={({ isActive }) =>
-                    `relative cursor-pointer transition-all duration-200 ${isActive ? 'text-red-600 font-semibold' : 'text-gray-700'
+                    `relative cursor-pointer transition-all duration-200 ${isActive ? 'text-red-600 font-semibold border-b-2 border-b-red-600' : 'text-gray-700'
                     }`
                   }
                 >

@@ -12,6 +12,8 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 import ScrollToTop from './components/ScrollToTop'
 import PageNotfound from './pages/PageNotFound'
+import ProductDetails from './pages/ProductDetails'
+import About from './pages/About'
 
 const App = () => {
   return (
@@ -23,8 +25,10 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products />} />
         <Route path='/products/:category' element={<ProductCategory />} />
+        <Route path='/products/:category/:id' element={<ProductDetails />} />
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/about' element={<About />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
         <Route path='/*' element={<PageNotfound />} />

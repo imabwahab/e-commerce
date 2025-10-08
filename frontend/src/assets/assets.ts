@@ -48,6 +48,39 @@ export const categories: Category[] = [
 
 ];
 
+import service_1 from '../assets/Service-1.png'
+import service_2 from '../assets/Service-2.png'
+import service_3 from '../assets/Services-3.png'
+import service_4 from '../assets/Services-4.png'
+
+interface Service {
+  number: number,
+  desc: string,
+  image: string
+}
+
+export const services: Service[] = [
+  { number: 10.5, desc: 'Sallers active our site', image: service_1 },
+  { number: 33, desc: 'Sallers active our site', image: service_2 },
+  { number: 45.5, desc: 'Sallers active our site', image: service_3 },
+  { number: 25, desc: 'Sallers active our site', image: service_4 },
+]
+
+export interface Member {
+  name: string,
+  designation: string,
+  image: string
+}
+
+import founder from '../assets/founder.png'
+import managing_director from '../assets/managing-director.png'
+import product_designer from '../assets/product-designer.png'
+
+export const teamMember: Member[] = [
+  { name: 'Tim Bruise', designation: "Founder & Chairman", image: founder },
+  { name: 'Lady Jain', designation: "Product Designer", image: product_designer },
+  { name: 'McCullum', designation: "Managing Director", image: managing_director },
+]
 
 
 
@@ -80,7 +113,7 @@ export interface Product {
   price: number
   offerPrice: number
   rating: number
-  image: string | string[]
+  image: string[]
   inStock: boolean
   isBestSelling: boolean
   isOnSale: boolean
