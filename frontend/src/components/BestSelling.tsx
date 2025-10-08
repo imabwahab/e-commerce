@@ -1,8 +1,11 @@
 
-import { products } from '../assets/assets'
+import { useContext } from 'react'
 import ProductCard from './ProductCard'
+import { AppContext } from '../context/AppContext'
 
 const BestSelling = () => {
+
+  const { products, navigate } = useContext(AppContext);
   return (
     <div className='w-full mt-16 mb-20 px-4 sm:px-6 lg:px-8'>
       {/* Section Header */}
@@ -19,7 +22,9 @@ const BestSelling = () => {
           Best Selling Products
         </h2>
 
-        <button className='px-6 text-sm md:px-10 py-4 flex items-center justify-center bg-red-500 text-white  rounded-lg transition-all duration-300 shadow-sm hover:shadow-md'>
+        <button
+          onClick={() => navigate('/products')}
+          className='px-6 text-sm md:px-10 py-4 flex items-center justify-center bg-red-500 text-white  rounded-lg transition-all duration-300 shadow-sm hover:shadow-md'>
           View All
         </button>
 

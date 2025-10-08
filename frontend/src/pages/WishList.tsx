@@ -1,13 +1,12 @@
-import { useContext } from "react"
-import { AppContext } from "../context/AppContext"
-import { products } from "../assets/assets";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 import ProductCard from "../components/ProductCard";
 import { FaRegHeart } from "react-icons/fa";
 
 
 const WishList = () => {
 
-  const { wishList } = useContext(AppContext);
+  const { products, wishList } = useContext(AppContext);
 
   const wishListProducts = products.filter((item) => wishList[item._id] === true);
 

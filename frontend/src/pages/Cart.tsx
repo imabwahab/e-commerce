@@ -1,6 +1,5 @@
-import { useContext } from 'react'
-import { AppContext } from '../context/AppContext'
-import { products } from '../assets/assets'
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FiMinus } from "react-icons/fi";
@@ -8,13 +7,13 @@ import { FaPlus } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa6";
 
 const Cart = () => {
-  const { cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(AppContext);
+  const { products, cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(AppContext);
   const cart = Object.entries(cartItems);
 
   const totalItems = Object.values(cartItems).reduce((a, b) => a + b, 0);
   const totalPrice = cart.reduce((total, [itemId, quantity]) => {
     const product = products.find((p) => p._id === itemId);
-    return total + (product?.price || 0) * quantity;
+    return total + (product?.offerPrice || 0) * quantity;
   }, 0);
 
   if (cart.length === 0) {
@@ -74,7 +73,7 @@ const Cart = () => {
                   <div className="col-span-5 flex items-center gap-4">
                     <div className='bg-gray-50 rounded-lg p-3 border border-gray-200'>
                       <img
-                        src={product.image}
+                        src={product.image[0]}
                         alt={product.name}
                         className='w-20 h-20 object-contain'
                       />
@@ -86,7 +85,7 @@ const Cart = () => {
                   </div>
 
                   <p className="col-span-2 text-center font-semibold text-gray-900">
-                    ${product.price.toFixed(2)}
+                    ${product.offerPrice.toFixed(2)}
                   </p>
 
                   <div className="col-span-2 flex justify-center">
@@ -106,7 +105,7 @@ const Cart = () => {
                   </div>
 
                   <p className="col-span-2 text-center font-bold text-red-500 text-lg">
-                    ${(product.price * quantity).toFixed(2)}
+                    ${(product.offerPrice * quantity).toFixed(2)}
                   </p>
 
                   <div className="col-span-1 flex justify-center">
@@ -123,7 +122,7 @@ const Cart = () => {
                   <div className='flex gap-4 mb-4'>
                     <div className='bg-gray-50 rounded-lg p-2 border border-gray-200 flex-shrink-0'>
                       <img
-                        src={product.image}
+                        src={product.image[0]}
                         alt={product.name}
                         className='w-20 h-20 object-contain'
                       />
@@ -131,7 +130,7 @@ const Cart = () => {
                     <div className='flex-grow'>
                       <h3 className='font-semibold text-gray-900 mb-1'>{product.name}</h3>
                       <p className='text-sm text-gray-500 mb-2'>{product.category}</p>
-                      <p className='font-semibold text-gray-900'>${product.price.toFixed(2)}</p>
+                      <p className='font-semibold text-gray-900'>${product.offerPrice.toFixed(2)}</p>
                     </div>
                   </div>
 
@@ -151,7 +150,7 @@ const Cart = () => {
                     </div>
 
                     <p className='font-bold text-red-500 text-lg'>
-                      ${(product.price * quantity).toFixed(2)}
+                      ${(product.offerPrice * quantity).toFixed(2)}
                     </p>
 
                     <button

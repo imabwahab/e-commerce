@@ -38,7 +38,7 @@ const Categories = () => {
       {/* Categories Grid */}
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6'>
         {categories.map((cat, index) => (
-          <div onClick={() => HandleCategoryClick(cat.path)}>
+          <div key={index} onClick={() => HandleCategoryClick(cat.path)}>
             <div
               key={index}
               className='group bg-white border-2 border-gray-200 rounded-lg p-6 flex flex-col gap-4 items-center justify-center hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer min-h-[180px]'

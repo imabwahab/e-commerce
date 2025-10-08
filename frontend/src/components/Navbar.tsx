@@ -44,7 +44,9 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
 
-            <div className="text-xl sm:text-2xl font-bold text-red-600 cursor-pointer hover:scale-105 transition-transform duration-200">
+            <div
+              onClick={() => navigate('/')}
+              className="text-xl sm:text-2xl font-bold text-red-600 cursor-pointer hover:scale-105 transition-transform duration-200">
               Exclusive
             </div>
 
@@ -92,7 +94,7 @@ const Navbar = () => {
                 className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
                 <CiHeart className="w-6 h-6" />
                 <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  {Object.values(wishList).filter((val) => val===true).length}
+                  {Object.values(wishList).filter((val) => val === true).length}
                 </span>
               </button>
 
@@ -102,7 +104,7 @@ const Navbar = () => {
                 className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
                 <MdOutlineShoppingCart className="w-6 h-6" />
                 <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  {Object.values(cartItems).reduce((acc, cur)=> acc + cur, 0)}
+                  {Object.values(cartItems).reduce((acc, cur) => acc + cur, 0)}
                 </span>
               </button>
 
@@ -138,14 +140,15 @@ const Navbar = () => {
           {isMobileMenuOpen && (
             <div className="lg:hidden border-t border-gray-200 py-4 animate-in fade-in slide-in-from-top-2 duration-300">
               <ul className="flex flex-col gap-2 text-gray-700 font-medium">
-                {["Home", "About", "Contact", "Sign Up"].map((item, index) => (
+                {navLinks.map((item, index) => (
                   <Link
+                    onClick={()=> setIsMobileMenuOpen(!isMobileMenuOpen)}
                     key={index}
-                    to={(item !== "Home" ? `/${item.toLowerCase()}` : '/')}
+                    to={item.path}
                   > <li
                     className="relative cursor-pointer  hover:text-red-600 transition-all duration-300 py-1 px-4 rounded-lg hover:bg-gray-50"
                   >
-                      {item}
+                      {item.name}
                     </li></Link>
                 ))}
               </ul>

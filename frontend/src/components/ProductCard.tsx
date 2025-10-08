@@ -37,11 +37,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       className="bg-white transition-all duration-300  min-w-[240px] max-w-[300px] w-full  overflow-hidden">
       {/* Image Section */}
-      <div className="group cursor-pointer relative flex items-center justify-center w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden rounded-md">
+      <div className="group cursor-pointer relative flex items-center justify-center w-full h-72 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden rounded-md">
         <img
           onClick={() => navigate(`/products/${product.category.toLowerCase()}/${product._id}`)}
-          className="group-hover:scale-110 transition-transform duration-500 ease-out max-w-60  md:max-w-65 object-contain"
-          src={product.image}
+          className="group-hover:scale-110 transition-transform duration-500 ease-out max-w-60  md:max-w-60 object-contain "
+          src={product.image[0]}
           alt={product.name}
         />
 
@@ -63,7 +63,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Discount Badge */}
-        {product.isOnSale  && (
+        {product.isOnSale && (
           <span className="bg-red-500 absolute top-4 left-4 text-white text-xs font-bold px-3 py-1.5 rounded-md shadow-md">
             -{discount}%
           </span>
@@ -111,7 +111,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Price */}
         <div className="flex items-center gap-3 pt-1">
           <p className="text-3xl font-bold text-gray-900">
-            ${product.isOnSale ? product.offerPrice: product?.price}
+            ${product.isOnSale ? product.offerPrice : product?.price}
           </p>
           {
             product.isOnSale && product.price && <p className="text-gray-400 text-lg line-through">
