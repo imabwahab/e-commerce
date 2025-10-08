@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import ScrollToTop from './components/ScrollToTop'
+import PageNotfound from './pages/PageNotFound'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/*' element={<PageNotfound />} />
       </Routes>
       <Footer />
     </>
