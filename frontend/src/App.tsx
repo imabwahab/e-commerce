@@ -8,10 +8,14 @@ import { Toaster } from 'react-hot-toast'
 import ProductCategory from './pages/ProductCategory'
 import Cart from './pages/Cart'
 import Footer from './components/Footer'
+import Signup from './pages/Signup'
+import Login from './pages/Login'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
     <>
+      <ScrollToTop />
       <Toaster />
       <Navbar />
       <Routes>
@@ -20,6 +24,8 @@ const App = () => {
         <Route path='/products/:category' element={<ProductCategory />} />
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
       <Footer />
     </>
