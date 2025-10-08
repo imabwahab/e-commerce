@@ -15,6 +15,7 @@ import PageNotfound from './pages/PageNotFound'
 import ProductDetails from './pages/ProductDetails'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Account from './pages/Account'
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/account' element={<Account />} />
         <Route path='/*' element={<PageNotfound />} />
       </Routes>
       <Footer />

@@ -36,7 +36,7 @@ const Footer = () => {
           <div>
             <h4 className='text-xl font-bold mb-4'>Account</h4>
             <ul className='space-y-2 text-gray-400 text-sm'>
-              <li className='hover:text-white cursor-pointer transition-colors'>My Account</li>
+              <li onClick={() => navigate('/account')} className='hover:text-white cursor-pointer transition-colors'>My Account</li>
               <li onClick={() => navigate('/signup')} className='hover:text-white cursor-pointer transition-colors'>Login / Register</li>
               <li onClick={() => navigate('/cart')} className='hover:text-white cursor-pointer transition-colors'>Cart</li>
               <li onClick={() => navigate('/wishlist')} className='hover:text-white cursor-pointer transition-colors'>WishList</li>
