@@ -14,6 +14,7 @@ import ScrollToTop from './components/ScrollToTop'
 import PageNotfound from './pages/PageNotFound'
 import ProductDetails from './pages/ProductDetails'
 import About from './pages/About'
+import Contact from './pages/Contact'
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/wishlist' element={<WishList />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
         <Route path='/*' element={<PageNotfound />} />
