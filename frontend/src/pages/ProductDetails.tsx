@@ -4,11 +4,12 @@ import { AppContext } from "../context/AppContext";
 import ProductCard from "../components/ProductCard";
 import Star from '../assets/Five_star.png'
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+import type { Product } from "../assets/assets";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { filteredProducts, addToCart, wishList, toggleWishList } = useContext(AppContext);
-  const product = filteredProducts.find((product) => product._id === id);
+  const product: Product = filteredProducts.find((pro) => pro._id === id);
 
 
   const [isFavorite, setIsFavorite] = useState(false);
@@ -132,7 +133,7 @@ const ProductDetails = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
+            <div className="flex flex-row items-center gap-4 mt-8">
               <button
                 onClick={() => addToCart(product._id)}
                 className="w-full py-4 px-6 font-semibold bg-white border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-900 hover:text-white transition-all duration-200"
@@ -172,12 +173,12 @@ const ProductDetails = () => {
 
       {/* Related Products */}
       {relatedProducts.length > 0 && (
-        <div className="max-w-6xl mx-auto px-6 my-16">
+        <div className="max-w-6xl justify-items-center mx-auto px-6 my-16">
           <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8">
             Related Products
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-4 md:gap-6">
             {relatedProducts.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}

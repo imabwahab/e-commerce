@@ -153,7 +153,6 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
   useEffect(() => {
     fetchProducts();
-    console.log(search);
   }, [search])
 
   const value: AppContextType = { products, wishList, toggleWishList, navigate, cartItems, addToCart, removeFromCart, deleteFromCart, search, setSearch, filteredProducts, aToZ, zToA, lowestPrice, highestPrice };

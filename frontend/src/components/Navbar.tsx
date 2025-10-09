@@ -29,7 +29,9 @@ const Navbar = () => {
               for All Swim Suits and Free Express Delivery{" "}
             </span>
             <span> — </span>
-            <span className="underline cursor-pointer hover:text-red-400 transition-colors duration-200">
+            <span
+              onClick={() => navigate('/products')}
+              className="underline cursor-pointer hover:text-red-400 transition-colors duration-200">
               Shop Now
             </span>
           </p>
@@ -142,7 +144,7 @@ const Navbar = () => {
               <ul className="flex flex-col gap-2 text-gray-700 font-medium">
                 {navLinks.map((item, index) => (
                   <Link
-                    onClick={()=> setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     key={index}
                     to={item.path}
                   > <li

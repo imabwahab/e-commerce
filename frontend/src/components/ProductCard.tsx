@@ -39,7 +39,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Image Section */}
       <div className="group cursor-pointer relative flex items-center justify-center w-full h-72 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden rounded-md">
         <img
-          onClick={() => navigate(`/products/${product.category.toLowerCase()}/${product._id}`)}
           className="group-hover:scale-110 transition-transform duration-500 ease-out max-w-60  md:max-w-60 object-contain "
           src={product.image[0]}
           alt={product.name}
@@ -57,7 +56,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <IoMdHeartEmpty className="text-xl text-gray-700 " />
             )}
           </button>
-          <button className="bg-white hover:bg-blue-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95">
+          <button
+            onClick={() => navigate(`/products/${product.category.toLowerCase()}/${product._id}`)}
+            className="bg-white hover:bg-blue-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95">
             <IoEyeOutline className="text-xl text-gray-700" />
           </button>
         </div>

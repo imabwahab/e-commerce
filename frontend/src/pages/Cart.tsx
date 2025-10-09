@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa6";
 
 const Cart = () => {
-  const { products, cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(AppContext);
+  const { products, cartItems, addToCart, removeFromCart, deleteFromCart, navigate } = useContext(AppContext);
   const cart = Object.entries(cartItems);
 
   const totalItems = Object.values(cartItems).reduce((a, b) => a + b, 0);
@@ -189,7 +189,9 @@ const Cart = () => {
               Proceed to Checkout
             </button>
 
-            <button className='w-full mt-3 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 rounded-lg border border-gray-300 transition-colors'>
+            <button 
+            onClick={()=> navigate('/products')}
+            className='w-full mt-3 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 rounded-lg border border-gray-300 transition-colors'>
               Continue Shopping
             </button>
           </div>
