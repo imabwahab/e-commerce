@@ -1,32 +1,31 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { FaRegEye, FaRegEyeSlash, FaRegUserCircle } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signupSchema, type SignupFormData } from '../schema/signupSchema';
+
 const SignupForm = () => {
 
   const { navigate } = useContext(AppContext);
-  const [showPassword, setShowPassword] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
+  const [showPassword, setShowPassword] = useState(false);
+
+
+  // Intialize form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupFormData>({
+    resolver: zodResolver(signupSchema)
   })
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
+  const onSubmit = (data: SignupFormData) => {
+    console.log("✅ Valid form data:", data);
   }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-    console.log(formData)
-  }
-
   return (
     <>
       <div className='bg-white rounded-md shadow-md mt-8 p-8 md:p-12 w-full max-w-md mx-auto hover:shadow-3xl transition-shadow duration-300'>
@@ -35,7 +34,7 @@ const SignupForm = () => {
           <p className='text-gray-500 text-sm'>Join us today and get started</p>
         </div>
 
-        <form onSubmit={handleSubmit} className='space-y-6'>
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <div >
             <div className='relative'>
               <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors duration-200'>
@@ -43,13 +42,15 @@ const SignupForm = () => {
               </div>
               <input
                 type='text'
-                name='name'
-                value={formData.name}
-                onChange={handleChange}
+                {...register("name")}
                 className='block w-full pl-10 pr-3 py-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-red-500 transition-all duration-300 placeholder:text-gray-400'
                 placeholder='John Doe'
               />
+
             </div>
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
           </div>
 
           <div >
@@ -59,28 +60,29 @@ const SignupForm = () => {
               </div>
               <input
                 type='email'
-                name='email'
-                value={formData.email}
-                onChange={handleChange}
+                {...register("email")}
                 className='block w-full pl-10 pr-3 py-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-red-500 transition-all duration-300 placeholder:text-gray-400'
                 placeholder='john@example.com'
               />
+
             </div>
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+            )}
           </div>
 
           <div >
             <div className='relative'>
-              <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors duration-200'>
+              <div className='absolute inset-y-0  left-0 pl-3 flex items-center pointer-events-none transition-colors duration-200'>
                 <CiLock className='h-5 w-5 text-gray-400 ' />
               </div>
               <input
                 type={showPassword ? 'text' : 'password'}
-                name='password'
-                value={formData.password}
-                onChange={handleChange}
+                {...register("password")}
                 className='block w-full pl-10 pr-12 py-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-red-500 transition-all duration-300 placeholder:text-gray-400'
                 placeholder='••••••••'
               />
+
               <button
                 type='button'
                 onClick={() => setShowPassword(!showPassword)}
@@ -93,6 +95,9 @@ const SignupForm = () => {
                 )}
               </button>
             </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+            )}
           </div>
 
           <button

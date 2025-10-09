@@ -26,7 +26,7 @@ const ProductHeader: React.FC<PoductHeaderProps> = ({ header, title }) => {
           {title}
         </h2>
         <div className='flex flex-row gap-3'>
-          <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
+          {/* <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -35,7 +35,7 @@ const ProductHeader: React.FC<PoductHeaderProps> = ({ header, title }) => {
               placeholder="Search products"
             />
             <IoIosSearch />
-          </div>
+          </div> */}
 
           <div className='relative '>
             <button

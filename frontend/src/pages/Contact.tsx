@@ -1,7 +1,19 @@
 import call_icon from '../assets/icons-phone.png'
 import mail_icon from '../assets/icons-mail.png'
+import { useForm } from 'react-hook-form'
+import { contactSchema, type ContactFormData } from '../schema/contactSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const Contact = () => {
+
+  const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema)
+  });
+
+  const onSubmit = (data: ContactFormData) => {
+    console.log("✅ Valid form data:", data);
+  }
+
   return (
     <div className='w-full mt-32  max-w-7xl mx-auto'>
       {/* Section Header */}
@@ -14,6 +26,7 @@ const Contact = () => {
 
       <div className=" grid gap-8 p-8 grid-cols-1 md:grid-cols-[1fr_2fr]" >
 
+        {/* Left Side Info */}
         <div className=" rounded shadow flex flex-col p-6">
           <div className='py-6' >
             <div className='flex flex-row items-center gap-8'>
@@ -34,18 +47,63 @@ const Contact = () => {
             <p className='py-2'>Emails: support@exclusive.com</p>
           </div>
         </div>
+
+        {/* Right Side Form to get info */}
         <div className=" rounded shadow p-8 flex flex-col gap-8">
-          <div className='grid grid-cols-3 gap-4'>
-            <input className='bg-gray-100 py-2 px-4 rounded focus:outline-none' type="text" placeholder='Your Name *' />
-            <input className='bg-gray-100 py-2 px-4 rounded focus:outline-none' type="email" placeholder='Your Email *' />
-            <input className='bg-gray-100 py-2 px-4 rounded focus:outline-none' type="text" placeholder='Your Phone *' />
-          </div>
-          <div>
-          <textarea className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full' placeholder='your message' cols={30} rows={10} ></textarea>
-          </div>
-          <div className='flex justify-end'>
-            <button className='bg-red-500 text-white py-4 px-4 rounded'>Send Message</button>
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+              <div>
+                <input
+
+                  type="text"
+                  placeholder='Your Name *'
+                  {...register("name")}
+                  className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full'
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                )}
+              </div>
+
+              <div>
+
+                <input
+                  type="email"
+                  placeholder='Your Email *'
+                  {...register('email')}
+                  className='bg-gray-100 py-2 px-4 rounded focus:outline-none' />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                )}
+              </div>
+
+              <div>
+                <input
+                  type="text"
+                  placeholder='Your Phone *'
+                  {...register("phone")}
+                  className='bg-gray-100 py-2 px-4 rounded focus:outline-none'
+                />
+
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <textarea
+                placeholder='your message'
+                cols={30} rows={10}
+                {...register("message")}
+                className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full'></textarea>
+              {errors.message && (
+                <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+              )}
+            </div>
+            <div className='flex justify-end'>
+              <button className='bg-red-500 text-white py-4 px-4 rounded'>Send Message</button>
+            </div>
+          </form>
         </div>
       </div>
 

@@ -11,11 +11,21 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const { wishList, navigate, cartItems } = useContext(AppContext);
+  const { wishList, navigate, cartItems, search, setSearch } = useContext(AppContext);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // 
+  const HandleSearchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    navigate('/products');
+    setSearch(e.target.value)
+    if (e.target.value === '') {
+      navigate('/')
+    }
+  }
 
   return (
     <div className="w-full font-sans fixed top-0 left-0 right-0 z-[500]">
@@ -44,6 +54,7 @@ const Navbar = () => {
       {/*  Main Navbar  */}
       <div className="shadow-sm sticky top-0 z-50 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Desktop Menu */}
           <div className="flex items-center justify-between py-4">
 
             <div
@@ -76,6 +87,8 @@ const Navbar = () => {
               <div className="hidden md:flex items-center border border-gray-300 rounded-full px-3 py-2 bg-gray-50 focus-within:border-red-600 transition-all duration-300">
                 <input
                   type="text"
+                  value={search}
+                  onChange={(e) => HandleSearchBar(e)}
                   placeholder="What are you looking for?"
                   className="bg-transparent outline-none text-sm w-32 lg:w-48 text-gray-700 placeholder-gray-400"
                 />
@@ -130,6 +143,8 @@ const Navbar = () => {
               <div className="flex items-center border border-gray-300 rounded-full px-3 py-2 bg-gray-50 focus-within:border-red-600 transition-all duration-300">
                 <input
                   type="text"
+                  value={search}
+                  onChange={(e) => HandleSearchBar(e)}
                   placeholder="What are you looking for?"
                   className="bg-transparent outline-none text-sm w-full text-gray-700 placeholder-gray-400"
                 />
@@ -143,15 +158,19 @@ const Navbar = () => {
             <div className="lg:hidden border-t border-gray-200 py-4 animate-in fade-in slide-in-from-top-2 duration-300">
               <ul className="flex flex-col gap-2 text-gray-700 font-medium">
                 {navLinks.map((item, index) => (
-                  <Link
+                  <NavLink
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     key={index}
                     to={item.path}
-                  > <li
-                    className="relative cursor-pointer  hover:text-red-600 transition-all duration-300 py-1 px-4 rounded-lg hover:bg-gray-50"
+                    className={({ isActive }) => `relative cursor-pointer transition-all duration-200 ${isActive ? 'text-red-600 font-semibold border-b-2 w-max border-b-red-600' : 'text-gray-700'
+                      }`}
                   >
+                    <li
+
+                    >
                       {item.name}
-                    </li></Link>
+                    </li>
+                  </NavLink>
                 ))}
               </ul>
             </div>
