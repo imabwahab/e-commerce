@@ -24,11 +24,7 @@ const Checkout = () => {
     toast.success('Billing information saved!');
   };
 
-  const handleSubmit = (
-    orderInfo: OrderItems[],
-    paymentMethod: string,
-    discount?: number
-  ) => {
+  const handleSubmit = (orderInfo: OrderItems[], paymentMethod: string, discount?: number) => {
     if (!billingData) {
       toast.error("Please fill the billing form first");
       return;
@@ -47,15 +43,17 @@ const Checkout = () => {
       finalTotal
     });
 
-    // Here you would typically send this data to your backend
+
     toast.success('Order placed successfully!');
   };
 
   return (
     <div className="w-full mt-32 sm:mt-16 lg:mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-      {/* Breadcrumb */}
-      <div className="text-sm text-gray-500 mb-8">
-        <span>Account</span> / <span>My Account</span> / <span>Product</span> / <span>View Cart</span> / <span className="text-black">CheckOut</span>
+      <div className='mb-8'>
+        <div className='flex items-center gap-3 mb-2'>
+          <span className='w-4 h-10 bg-red-500 rounded'></span>
+          <p className='text-red-500 font-semibold text-base'>Checkout</p>
+        </div>
       </div>
 
       {/* Header */}

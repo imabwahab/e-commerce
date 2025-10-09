@@ -25,14 +25,14 @@ const Categories = () => {
         <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>
           Browse By Category
         </h2>
-        <div className='flex gap-2'>
+        {/* <div className='flex gap-2'>
           <button className='w-11 h-11 flex items-center justify-center bg-gray-100 hover:bg-red-500 hover:text-white text-gray-700 rounded-full transition-all duration-300 shadow-sm hover:shadow-md'>
             <FaArrowLeft className='text-lg' />
           </button>
           <button className='w-11 h-11 flex items-center justify-center bg-gray-100 hover:bg-red-500 hover:text-white text-gray-700 rounded-full transition-all duration-300 shadow-sm hover:shadow-md'>
             <FaArrowRight className='text-lg' />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Categories Grid */}

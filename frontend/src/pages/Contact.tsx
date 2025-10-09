@@ -17,7 +17,7 @@ const Contact = () => {
   return (
     <div className='w-full mt-32  max-w-7xl mx-auto'>
       {/* Section Header */}
-      <div className='py-8 '>
+      <div className=''>
         <div className='flex items-center px-8 gap-3 mb-2'>
           <span className='w-4 h-10 bg-red-500 rounded'></span>
           <p className='text-red-500 font-semibold text-base'>Contact</p>
@@ -49,62 +49,62 @@ const Contact = () => {
         </div>
 
         {/* Right Side Form to get info */}
-        <div className=" rounded shadow p-8 flex flex-col gap-8">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-              <div>
-                <input
+        <form onSubmit={handleSubmit(onSubmit)} className=" rounded  shadow p-8 flex flex-col gap-8">
 
-                  type="text"
-                  placeholder='Your Name *'
-                  {...register("name")}
-                  className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full'
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-                )}
-              </div>
-
-              <div>
-
-                <input
-                  type="email"
-                  placeholder='Your Email *'
-                  {...register('email')}
-                  className='bg-gray-100 py-2 px-4 rounded focus:outline-none' />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div>
-                <input
-                  type="text"
-                  placeholder='Your Phone *'
-                  {...register("phone")}
-                  className='bg-gray-100 py-2 px-4 rounded focus:outline-none'
-                />
-
-                {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
-                )}
-              </div>
-            </div>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
             <div>
-              <textarea
-                placeholder='your message'
-                cols={30} rows={10}
-                {...register("message")}
-                className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full'></textarea>
-              {errors.message && (
-                <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+              <input
+
+                type="text"
+                placeholder='Your Name *'
+                {...register("name")}
+                className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full'
+              />
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
               )}
             </div>
-            <div className='flex justify-end'>
-              <button className='bg-red-500 text-white py-4 px-4 rounded'>Send Message</button>
+
+            <div>
+
+              <input
+                type="email"
+                placeholder='Your Email *'
+                {...register('email')}
+                className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full' />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              )}
             </div>
-          </form>
-        </div>
+
+            <div>
+              <input
+                type="text"
+                placeholder='Your Phone *'
+                {...register("phone")}
+                className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full'
+              />
+
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+              )}
+            </div>
+          </div>
+          <div>
+            <textarea
+              placeholder='your message'
+              cols={30} rows={10}
+              {...register("message")}
+              className='bg-gray-100 py-2 px-4 rounded focus:outline-none w-full'></textarea>
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+            )}
+          </div>
+          <div className='flex justify-end'>
+            <button className='bg-red-500 text-white py-4 px-4 rounded'>Send Message</button>
+          </div>
+        </form>
+
       </div>
 
 

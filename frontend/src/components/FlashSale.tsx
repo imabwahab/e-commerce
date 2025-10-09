@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext"
 
 const FlashSale = () => {
 
-  const { products } = useContext(AppContext);
+  const { products, navigate } = useContext(AppContext);
 
   return (
     <div className='w-full mt-16 mb-20 px-4 sm:px-6 lg:px-8'>
@@ -22,14 +22,12 @@ const FlashSale = () => {
         <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>
           Flash Sales
         </h2>
-        <div className='flex gap-2'>
-          <button className='w-11 h-11 flex items-center justify-center bg-gray-100 hover:bg-red-500 hover:text-white text-gray-700 rounded-full transition-all duration-300 shadow-sm hover:shadow-md'>
-            <FaArrowLeft className='text-lg' />
-          </button>
-          <button className='w-11 h-11 flex items-center justify-center bg-gray-100 hover:bg-red-500 hover:text-white text-gray-700 rounded-full transition-all duration-300 shadow-sm hover:shadow-md'>
-            <FaArrowRight className='text-lg' />
-          </button>
-        </div>
+        
+        <button
+          onClick={() => navigate('/products')}
+          className='px-6 text-sm md:px-10 py-4 flex items-center justify-center bg-red-500 text-white  rounded-lg transition-all duration-300 shadow-sm hover:shadow-md'>
+          View All
+        </button>
       </div>
 
       <div className=' grid gap-4  justify-items-center px-auto py-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>

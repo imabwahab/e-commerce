@@ -5,9 +5,9 @@ const Account = () => {
 
 
   return (
-    <div className="w-full mt-32 sm:mt-16 lg:mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full mt-32  max-w-7xl mx-auto ">
       {/* Header */}
-      <div className="py-4 sm:py-6 lg:py-8 flex flex-row justify-between items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-row justify-between items-center gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <span className="w-3 sm:w-4 h-8 sm:h-10 bg-red-500 rounded"></span>
           <p className="text-red-500 font-semibold text-lg sm:text-xl">

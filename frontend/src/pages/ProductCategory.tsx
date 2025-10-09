@@ -15,7 +15,7 @@ const ProductCategory = () => {
   const products = filteredProducts.filter((item) => item.category.toLowerCase() === category.category?.toLocaleLowerCase());
   console.log(products)
   return (
-    <div className='max-w-7xl mx-auto w-full mt-30 mb-20 px-4 sm:px-6 lg:px-8'>
+    <div className='max-w-7xl mx-auto w-full mt-32 mb-20 px-4 sm:px-6 lg:px-8'>
 
       <ProductHeader header="Category" title={category.category} />
 
