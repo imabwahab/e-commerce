@@ -38,43 +38,50 @@ const LoginForm = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email Field */}
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <CiMail className="h-5 w-5 text-gray-400" />
+          <div>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <CiMail className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="email"
+                placeholder="john@example.com"
+                {...register("email")}
+                className="block w-full pl-10 pr-3 py-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-red-500 transition-all duration-300 placeholder:text-gray-400"
+              />
+
             </div>
-            <input
-              type="email"
-              placeholder="john@example.com"
-              {...register("email")}
-              className="block w-full pl-10 pr-3 py-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-red-500 transition-all duration-300 placeholder:text-gray-400"
-            />
+
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
             )}
           </div>
 
           {/* Password Field */}
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <CiLock className="h-5 w-5 text-gray-400" />
+          <div>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <CiLock className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                {...register("password")}
+                className="block w-full pl-10 pr-12 py-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-red-500 transition-all duration-300 placeholder:text-gray-400"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center hover:scale-110 transition-transform"
+              >
+                {showPassword ? (
+                  <FaRegEyeSlash className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                ) : (
+                  <FaRegEye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                )}
+              </button>
+
             </div>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="••••••••"
-              {...register("password")}
-              className="block w-full pl-10 pr-12 py-3 border-b-2 border-gray-300 bg-transparent focus:outline-none focus:border-red-500 transition-all duration-300 placeholder:text-gray-400"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center hover:scale-110 transition-transform"
-            >
-              {showPassword ? (
-                <FaRegEyeSlash className="h-5 w-5 text-gray-400 hover:text-gray-600" />
-              ) : (
-                <FaRegEye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
-              )}
-            </button>
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
             )}

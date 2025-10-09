@@ -43,7 +43,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto px-6 my-20">
+      <div className="max-w-6xl mt-40 mx-auto px-6 my-20">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
           <span className="hover:text-gray-900 cursor-pointer">Home</span>
