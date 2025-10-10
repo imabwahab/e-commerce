@@ -3,9 +3,10 @@ import { CiHeart } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose, IoIosSearch } from "react-icons/io";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { navLinks } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import { RxAvatar } from "react-icons/rx";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,7 +18,7 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // 
+  // function to handle search bar
   const HandleSearchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     navigate('/products');
@@ -26,6 +27,8 @@ const Navbar = () => {
       navigate('/')
     }
   }
+
+  const [profilePopup, setProfilePopup] = useState<boolean>();
 
   return (
     <div className="w-full font-sans fixed top-0 left-0 right-0 z-[500]">
@@ -45,7 +48,7 @@ const Navbar = () => {
               Shop Now
             </span>
           </p>
-          <button className="text-gray-300 hover:text-white text-xs border border-gray-600 px-3 py-1 rounded transition-colors duration-300 hover:border-white">
+          <button className="text-gray-300 hover:text-white text-xs border border-gray-600 px-3 py-1 rounded transition-colors duration-300 hover:border-white cursor-pointer">
             English
           </button>
         </div>
@@ -106,7 +109,7 @@ const Navbar = () => {
               {/* Wishlist Icon */}
               <button
                 onClick={() => navigate('/wishlist')}
-                className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
+                className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 cursor-pointer hover:scale-110">
                 <CiHeart className="w-6 h-6" />
                 <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                   {Object.values(wishList).filter((val) => val === true).length}
@@ -116,11 +119,26 @@ const Navbar = () => {
               {/* Cart Icon */}
               <button
                 onClick={() => navigate('/cart')}
-                className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 hover:scale-110">
+                className="relative text-gray-700 hover:text-red-600 transition-colors duration-300 cursor-pointer hover:scale-110">
                 <MdOutlineShoppingCart className="w-6 h-6" />
                 <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                   {Object.values(cartItems).reduce((acc, cur) => acc + cur, 0)}
                 </span>
+              </button>
+
+              {/* Profile Avatar Icon */}
+              <button
+                onClick={() => setProfilePopup(!profilePopup)}
+                className=" text-red-600  rounded-full relative hover:text-red-600/90 transition-colors duration-300 cursor-pointer ">
+                <RxAvatar className="w-7 h-7" />
+
+                <ul className={`${profilePopup ? "block" : 'hidden'} absolute top-10 right-0 bg-black/90 text-white shadow border border-gray-200 py-2.5 w-50 rounded-md text-sm z-40`}>
+                  {['Manage My Account', 'My Order', 'My Cancellations', 'Logout'].map((item) => (
+                    <li className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </button>
 
               {/* Mobile Menu Button */}

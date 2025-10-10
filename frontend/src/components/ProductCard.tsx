@@ -37,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       className="bg-white transition-all duration-300  min-w-[240px] max-w-[300px] w-full  overflow-hidden">
       {/* Image Section */}
-      <div className="group cursor-pointer relative flex items-center justify-center w-full h-72 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden rounded-md">
+      <div className="group relative flex items-center justify-center w-full h-72 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden rounded-md">
         <img
           className="group-hover:scale-110 transition-transform duration-500 ease-out max-w-60  md:max-w-60 object-contain "
           src={product.image[0]}
@@ -58,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </button>
           <button
             onClick={() => navigate(`/products/${product.category.toLowerCase()}/${product._id}`)}
-            className="bg-white hover:bg-blue-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95">
+            className="bg-white hover:bg-blue-50 rounded-full p-2.5 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 active:scale-95 cursor-pointer">
             <IoEyeOutline className="text-xl text-gray-700" />
           </button>
         </div>
@@ -75,7 +75,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="absolute bottom-0 left-0 right-0 w-full">
           {!cartItems[product._id] ? (
             <button
-              className="flex items-center justify-center gap-2 w-full bg-black hover:bg-gray-900 active:bg-gray-800 h-12 text-white font-semibold transition-all duration-200 transform active:scale-[0.98]"
+              className="flex items-center cursor-pointer justify-center gap-2 w-full bg-black hover:bg-gray-900 active:bg-gray-800 h-12 text-white font-semibold transition-all duration-200 transform active:scale-[0.98]"
               onClick={() => addToCart(product._id)}
             >
               <MdOutlineShoppingCart />
@@ -127,7 +127,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {[...Array(5)].map((_, i) => (
               <FaStar
                 key={i}
-                className={`text-base ${i < product.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                className={`text-base ${i < Math.round(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`}
               />
             ))}
           </div>

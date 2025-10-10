@@ -8,7 +8,7 @@ interface PoductHeaderProps {
 }
 
 const ProductHeader: React.FC<PoductHeaderProps> = ({ header, title }) => {
-  const { search, setSearch, aToZ, zToA, lowestPrice, highestPrice } = useContext(AppContext);
+  const { aToZ, zToA, lowestPrice, highestPrice } = useContext(AppContext);
   const [sortPopup, setSortPopup] = useState(false);
   return (
     <>
@@ -26,16 +26,6 @@ const ProductHeader: React.FC<PoductHeaderProps> = ({ header, title }) => {
           {title}
         </h2>
         <div className='flex flex-row gap-3'>
-          {/* <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
-              type="text"
-              placeholder="Search products"
-            />
-            <IoIosSearch />
-          </div> */}
 
           <div className='relative '>
             <button

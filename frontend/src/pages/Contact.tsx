@@ -17,17 +17,17 @@ const Contact = () => {
   return (
     <div className='w-full mt-32  max-w-7xl mx-auto'>
       {/* Section Header */}
-      <div className=''>
-        <div className='flex items-center px-8 gap-3 mb-2'>
+      <div className='px-4 md:px-8'>
+        <div className='flex items-center  gap-3 mb-2'>
           <span className='w-4 h-10 bg-red-500 rounded'></span>
           <p className='text-red-500 font-semibold text-base'>Contact</p>
         </div>
       </div>
 
-      <div className=" grid gap-8 p-8 grid-cols-1 md:grid-cols-[1fr_2fr]" >
+      <div className=" grid gap-8 p-4 md:p-8 grid-cols-1 md:grid-cols-[1fr_2fr]" >
 
         {/* Left Side Info */}
-        <div className=" rounded shadow flex flex-col p-6">
+        <div className=" rounded shadow flex flex-col px-2 py-6 md:p-6">
           <div className='py-6' >
             <div className='flex flex-row items-center gap-8'>
               <img src={call_icon} alt="call-icon" />
@@ -49,7 +49,7 @@ const Contact = () => {
         </div>
 
         {/* Right Side Form to get info */}
-        <form onSubmit={handleSubmit(onSubmit)} className=" rounded  shadow p-8 flex flex-col gap-8">
+        <form onSubmit={handleSubmit(onSubmit)} className=" rounded  shadow px-2 py-8 md:p-8 flex flex-col gap-8">
 
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
             <div>

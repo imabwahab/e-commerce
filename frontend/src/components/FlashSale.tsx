@@ -25,7 +25,7 @@ const FlashSale = () => {
         
         <button
           onClick={() => navigate('/products')}
-          className='px-6 text-sm md:px-10 py-4 flex items-center justify-center bg-red-500 text-white  rounded-lg transition-all duration-300 shadow-sm hover:shadow-md'>
+          className='px-6 text-sm md:px-10 py-4 flex items-center justify-center bg-red-500 text-white  rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer'>
           View All
         </button>
       </div>

@@ -26,7 +26,7 @@ const NewArrival = () => {
           <div className="absolute text-white left-4 bottom-4 space-y-1 z-10">
             <h2 className="text-lg md:text-xl font-bold tracking-tight">{newArrivals[0].productName}</h2>
             <p className="text-gray-200 text-xs md:text-sm leading-relaxed">{newArrivals[0].description}</p>
-            <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 mt-1">
+            <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 cursor-pointer mt-1">
               Shop Now
             </button>
           </div>
@@ -38,7 +38,7 @@ const NewArrival = () => {
             <div className="absolute text-white left-4 bottom-4 space-y-1 z-10">
               <h2 className="text-lg md:text-xl font-bold tracking-tight">{newArrivals[1].productName}</h2>
               <p className="text-gray-200 text-xs md:text-sm leading-relaxed">{newArrivals[1].description}</p>
-              <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 mt-1">
+              <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 cursor-pointer mt-1">
                 Shop Now
               </button>
             </div>
@@ -50,7 +50,7 @@ const NewArrival = () => {
               <div className="absolute text-white left-4 bottom-4 space-y-1 z-10">
                 <h2 className="text-lg md:text-xl font-bold tracking-tight">{newArrivals[2].productName}</h2>
                 <p className="text-gray-200 text-xs md:text-sm leading-relaxed">{newArrivals[2].description}</p>
-                <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 mt-1">
+                <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 cursor-pointer mt-1">
                   Shop Now
                 </button>
               </div>
@@ -61,7 +61,7 @@ const NewArrival = () => {
               <div className="absolute text-white left-4 bottom-4 space-y-1 z-10">
                 <h2 className="text-lg md:text-xl font-bold tracking-tight">{newArrivals[3].productName}</h2>
                 <p className="text-gray-200 text-xs md:text-sm leading-relaxed">{newArrivals[3].description}</p>
-                <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 mt-1">
+                <button className="inline-flex items-center gap-1 text-sm text-white font-semibold border-b-2 border-white pb-0.5 hover:border-red-500 hover:text-red-500 transition-colors duration-300 cursor-pointer mt-1">
                   Shop Now
                 </button>
               </div>

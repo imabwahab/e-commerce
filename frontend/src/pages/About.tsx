@@ -12,7 +12,7 @@ const About = () => {
         </div>
       </div>
       <div className=' bg-white grid grid-cols-1 md:grid-cols-2 px-4 md:px-0'>
-        <div className=' w-full flex flex-col gap-8 px-10 py-30'>
+        <div className=' w-full flex flex-col gap-8 px-2 md:px-10 py-10 md:py-30'>
           <h1 className='font-bold text-5xl '>Our Story</h1>
           <p className=''>Launced in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. </p>
 

@@ -4,15 +4,20 @@ export const billingSchema = z.object({
   firstName: z
     .string()
     .min(2, "First name must be at least 2 characters")
-    .max(20, "First name must not exceed 20 characters"),
+    .max(16, "First name must not exceed 20 characters"),
 
   companyName: z.string().optional(),
 
   streetAddress: z
     .string()
-    .min(5, "Street address must be at least 5 characters"),
+    .min(5, "Street address must be at least 5 characters")
+    .max(30, "Street address must not exceed 30 characters"),
 
-  apartment: z.string().optional(),
+  apartment: z
+    .string()
+    .min(5, "Street address must be at least 5 characters")
+    .max(30, "Apartment address must not exceed 30 characters")
+    .optional(),
 
   city: z
     .string()
@@ -24,9 +29,13 @@ export const billingSchema = z.object({
     .regex(/^[0-9+\-\s]+$/, "Phone number can only contain digits, +, -, or spaces")
     .min(10, "Phone number must be at least 10 digits"),
 
-  email: z.string().email("Please enter a valid email address"),
+  email: z
+    .string()
+    .email("Please enter a valid email address"),
 
-  saveInfo: z.boolean().optional(),
+  saveInfo: z
+    .boolean()
+    .optional(),
 });
 
 export type BillingFormData = z.infer<typeof billingSchema>;
