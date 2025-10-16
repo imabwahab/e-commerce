@@ -1,17 +1,15 @@
 
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { CiMail, CiLock } from "react-icons/ci";
-import { AppContext } from "../context/AppContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { loginSchema, type LoginFormData } from '../schema/loginSchema'
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-
-
-  const { navigate } = useContext(AppContext);
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
   // Initialize form

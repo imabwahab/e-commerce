@@ -3,6 +3,7 @@ import credit_cards from '../assets/credit-cards.png';
 import toast from 'react-hot-toast';
 import type { OrderItems } from '../pages/Checkout';
 import { useAppSelector } from '../hooks';
+import { useNavigate } from 'react-router-dom';
 
 interface OrderSummaryProps {
   handleSubmit: (orderInfo: OrderItems[], paymentMethod: string, discount?: number) => void;
@@ -11,7 +12,8 @@ interface OrderSummaryProps {
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ handleSubmit, setOrderItems }) => {
 
-  const { cartItems, products } = useAppSelector((state) => state.app)
+  const { cartItems, products } = useAppSelector((state) => state.app);
+  const navigate = useNavigate();
   const cart = Object.entries(cartItems);
 
   const [couponCode, setCouponCode] = useState<string>('');
@@ -181,6 +183,10 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ handleSubmit, setOrderItems
       >
         Place Order
       </button>
+
+      <button 
+          onClick={()=>navigate('/cart')}
+          className="py-4 px-4 border-1 font-semibold border-black/60 hover:bg-red-500 duration-300 hover:text-white rounded">Return To Cart</button>
     </div>
   );
 };

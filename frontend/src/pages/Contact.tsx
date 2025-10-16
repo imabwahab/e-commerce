@@ -3,6 +3,7 @@ import mail_icon from '../assets/icons-mail.png'
 import { useForm } from 'react-hook-form'
 import { contactSchema, type ContactFormData } from '../schema/contactSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import toast from 'react-hot-toast'
 
 const Contact = () => {
 
@@ -34,7 +35,12 @@ const Contact = () => {
               <span className='text-xl'>Call To Us</span>
             </div>
             <p className='py-2'>We are available 24/7, 7 days a week.</p>
-            <p className='py-2'>Phone: +89 932 6454212</p>
+            <p
+              onClick={() => {
+                navigator.clipboard.writeText('+89 932 6454212')
+                toast.success('number copied')
+              }}
+              className='py-2'>Phone: +89 932 6454212</p>
           </div>
           <hr className='w-full h-4  border-t-2' />
           <div className='py-6' >
@@ -43,8 +49,18 @@ const Contact = () => {
               <span className='text-xl'>Write to US</span>
             </div>
             <p className='py-2'>Fill out our form and we will contact you within 24 hours.</p>
-            <p className='py-2'>Emails: customer@exclusive.com</p>
-            <p className='py-2'>Emails: support@exclusive.com</p>
+            <p
+              onClick={() => {
+                navigator.clipboard.writeText('customer@exclusive.com')
+                toast.success('email copied')
+              }}
+              className='py-2'>Emails: customer@exclusive.com</p>
+            <p
+              onClick={() => {
+                navigator.clipboard.writeText('support@exclusive.com')
+                toast.success('email copied')
+              }}
+              className='py-2'>Emails: support@exclusive.com</p>
           </div>
         </div>
 
@@ -104,11 +120,7 @@ const Contact = () => {
             <button className='bg-red-500 text-white py-4 px-4 rounded'>Send Message</button>
           </div>
         </form>
-
       </div>
-
-
-
     </div>
   )
 }

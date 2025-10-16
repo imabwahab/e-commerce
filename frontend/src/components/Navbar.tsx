@@ -139,7 +139,7 @@ const Navbar = () => {
               {/* Profile Avatar Icon */}
               <button
                 onClick={() => setProfilePopup(!profilePopup)}
-                className={`${(pathname === "/account") ? "bg-red-400 text-white" : 'bg-white'} text-black/70 rounded-full relative hover:text-white/70 transition-colors duration-300 cursor-pointer `}
+                className={`${(pathname === "/account") ? "bg-red-400 hover:text-white/80 text-white" : 'bg-white'} text-black/70 rounded-full relative hover:text-black/40 transition-colors duration-300 cursor-pointer `}
               >
                 <RxAvatar className="w-7 h-7" />
                 <ul className={`${profilePopup ? "block" : 'hidden'} absolute top-10 right-0 bg-black/90 text-white shadow border border-gray-200 py-2.5 w-50 rounded-md text-sm z-40`}>

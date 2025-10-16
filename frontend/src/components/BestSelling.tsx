@@ -1,11 +1,11 @@
-
-import { useContext } from 'react'
 import ProductCard from './ProductCard'
-import { AppContext } from '../context/AppContext'
+import { useAppSelector } from '../hooks'
+import { useNavigate } from 'react-router-dom'
 
 const BestSelling = () => {
+  const { products } = useAppSelector((state) => state.app);
+  const navigate = useNavigate();
 
-  const { products, navigate } = useContext(AppContext);
   return (
     <div className='w-full mt-16 mb-20 px-4 sm:px-6 lg:px-8'>
       {/* Section Header */}

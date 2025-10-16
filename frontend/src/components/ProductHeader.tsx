@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
-import { AppContext } from '../context/AppContext';
-import { IoIosSearch } from 'react-icons/io';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { aToZ, zToA, highestPrice, lowestPrice } from '../redux/appSlice';
 
 interface PoductHeaderProps {
   header: string,
@@ -8,8 +8,34 @@ interface PoductHeaderProps {
 }
 
 const ProductHeader: React.FC<PoductHeaderProps> = ({ header, title }) => {
-  const { aToZ, zToA, lowestPrice, highestPrice } = useContext(AppContext);
+  const dispatch = useDispatch();
+
   const [sortPopup, setSortPopup] = useState(false);
+  const sortData = [
+    {
+      name: 'a-z', func: () => {
+        setSortPopup(false);
+        dispatch(aToZ());
+      }
+    },
+    {
+      name: 'z-a', func: () => {
+        setSortPopup(false);
+        dispatch(zToA());
+      }
+    },
+    {
+      name: 'lowestPrice', func: () => {
+        setSortPopup(false);
+        dispatch(lowestPrice());
+      }
+    }, {
+      name: 'highestPrice', func: () => {
+        setSortPopup(false);
+        dispatch(highestPrice());
+      }
+    }
+  ]
   return (
     <>
       {/* Section Header */}
@@ -26,57 +52,25 @@ const ProductHeader: React.FC<PoductHeaderProps> = ({ header, title }) => {
           {title}
         </h2>
         <div className='flex flex-row gap-3'>
-
           <div className='relative '>
             <button
               onClick={() => setSortPopup(true)}
               className='py-2 px-3 rounded text-white cursor-pointer bg-red-500'>Sort</button>
 
             <ul className={`${sortPopup ? "block" : 'hidden'} absolute top-10 right-0 bg-white shadow border border-gray-200 py-2.5 w-30 rounded-md text-sm z-40`}>
-              <li
-                onClick={() => {
-                  setSortPopup(false);
-                  aToZ();
-                }}
-                className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'
-              >
-                a-z
-              </li>
-              <li
-                onClick={() => {
-                  setSortPopup(false);
-                  zToA()
-                }}
-                className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'
-              >
-                z-a
-              </li>
-              <li
-                onClick={() => {
-                  setSortPopup(false)
-                  lowestPrice()
-                }}
-                className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'
-              >
-                lowest price
-              </li>
-              <li
-                onClick={() => {
-                  setSortPopup(false);
-                  highestPrice()
-                }}
-                className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'
-              >
-                highest price
-              </li>
+              {sortData.map((dat, i) => (
+                <li
+                  key={i}
+                  onClick={dat.func}
+                  className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'
+                >
+                  {dat.name}
+                </li>
+              ))}
             </ul>
           </div>
-
         </div>
-
-
       </div>
-
     </>
   )
 }

@@ -2,7 +2,7 @@ import { services } from '../assets/assets'
 
 const Services = () => {
   return (
-    <div className='mt-30 px-6 lg:px-20 w-full  justify-items-center grid grid-cols-1 md:grid-cols-3  gap-4 md:gap-6 lg:gap-10'>
+    <div className='mt-20 px-6 lg:px-20 w-full  justify-items-center grid grid-cols-1 md:grid-cols-3  gap-4 md:gap-6 lg:gap-10'>
       {services.map((ser, index) => (
         <div
           key={index}

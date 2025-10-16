@@ -6,6 +6,7 @@ import { useAppSelector } from '../hooks';
 import { addToCart, removeFromCart, deleteFromCart } from '../redux/appSlice';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { IoIosCloseCircle } from "react-icons/io";
 
 const Cart = () => {
 
@@ -38,8 +39,8 @@ const Cart = () => {
         {/* Section Header */}
         <div className='mb-8'>
           <div className='flex items-center gap-3 mb-2'>
-            <span className='w-2 h-8 bg-red-500 rounded-full'></span>
-            <p className='text-red-500 font-semibold text-sm uppercase tracking-wide'>Shopping Cart</p>
+            <span className='w-4 h-10 bg-red-500 rounded'></span>
+            <p className='text-red-500 font-semibold text-sm tracking-wide'>Shopping Cart</p>
           </div>
         </div>
 
@@ -60,7 +61,6 @@ const Cart = () => {
           <p className="col-span-2 text-center">Price</p>
           <p className="col-span-2 text-center">Quantity</p>
           <p className="col-span-2 text-center">Subtotal</p>
-          <p className="col-span-1 text-center">Action</p>
         </div>
 
         {/* Cart Items */}
@@ -75,12 +75,17 @@ const Cart = () => {
                 {/* Desktop Layout */}
                 <div className="hidden md:grid grid-cols-12 py-6 px-6 items-center">
                   <div className="col-span-5 flex items-center gap-4">
-                    <div className='bg-gray-50 rounded-lg p-3 border border-gray-200'>
+                    <div className='bg-gray-50 rounded-lg p-3 border border-gray-200 relative group'>
                       <img
                         src={product.image[0]}
                         alt={product.name}
                         className='w-20 h-20 object-contain'
                       />
+                      <button
+                        onClick={() => dispatch(deleteFromCart(product._id))}
+                        className='absolute top-0 left-0 text-red-400 hover:text-red-500 hidden group-hover:block  rounded-lg transition-all'>
+                        <IoIosCloseCircle className='w-5 h-5' />
+                      </button>
                     </div>
                     <div>
                       <h3 className='font-semibold text-gray-900 text-base mb-1'>{product.name}</h3>
@@ -112,13 +117,7 @@ const Cart = () => {
                     ${(product.offerPrice * quantity).toFixed(2)}
                   </p>
 
-                  <div className="col-span-1 flex justify-center">
-                    <button
-                      onClick={() => dispatch(deleteFromCart(product._id))}
-                      className='text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-all'>
-                      <FaTrash className='w-5 h-5' />
-                    </button>
-                  </div>
+
                 </div>
 
                 {/* Mobile Layout */}
@@ -169,8 +168,15 @@ const Cart = () => {
           })}
         </div>
 
+
+        <div className="pb-4 flex justify-between">
+          <button 
+          onClick={()=>navigate('/products')}
+          className="py-4 px-4 border-1 font-semibold border-black/60 hover:bg-red-500 duration-300 hover:text-white rounded">Return To Shop</button>
+          <button className="py-4 px-4 border-1 border-black/60 rounded">Update Cart</button>
+        </div>
         {/* Cart Summary */}
-        <div className='flex flex-col lg:flex-row gap-6 justify-end'>
+        <div className='flex flex-col lg:flex-row gap-6 mt-6 justify-end'>
           <div className='lg:w-96 bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-xl p-6 shadow-md'>
             <h3 className='text-xl font-bold text-gray-900 mb-6'>Order Summary</h3>
 

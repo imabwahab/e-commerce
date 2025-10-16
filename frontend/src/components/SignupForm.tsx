@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { AppContext } from '../context/AppContext';
+import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash, FaRegUserCircle } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
@@ -7,10 +6,10 @@ import { CiLock } from "react-icons/ci";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signupSchema, type SignupFormData } from '../schema/signupSchema';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = () => {
-
-  const { navigate } = useContext(AppContext);
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
 
