@@ -1,11 +1,27 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 import ProductCard from "./ProductCard"
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import { AppContext } from "../context/AppContext"
 
 const FlashSale = () => {
 
   const { products, navigate } = useContext(AppContext);
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleScrollLeft = () => {
+    scrollContainerRef.current?.scrollBy({
+      left: -300,
+      behavior: "smooth"
+    })
+  }
+
+  const handleScrollRight = () => {
+    scrollContainerRef.current?.scrollBy({
+      left: 300,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className='w-full mt-16 mb-20 px-4 sm:px-6 lg:px-8'>
@@ -22,23 +38,40 @@ const FlashSale = () => {
         <h2 className='text-3xl md:text-4xl font-bold text-gray-900'>
           Flash Sales
         </h2>
-        
-        <button
-          onClick={() => navigate('/products')}
-          className='px-6 text-sm md:px-10 py-4 flex items-center justify-center bg-red-500 text-white  rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer'>
-          View All
-        </button>
+
+        <div className='flex gap-2'>
+          <button
+            onClick={handleScrollLeft}
+            className='w-11 h-11 flex items-center justify-center bg-gray-100 hover:bg-red-500 hover:text-white text-gray-700 rounded-full transition-all duration-300 shadow-sm hover:shadow-md'>
+            <FaArrowLeft className='text-lg' />
+          </button>
+          <button
+            onClick={handleScrollRight}
+            className='w-11 h-11 flex items-center justify-center bg-gray-100 hover:bg-red-500 hover:text-white text-gray-700 rounded-full transition-all duration-300 shadow-sm hover:shadow-md'>
+            <FaArrowRight className='text-lg' />
+          </button>
+        </div>
+
+
       </div>
 
-      <div className=' grid gap-4  justify-items-center px-auto py-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+      <div
+        ref={scrollContainerRef}
+        className=' flex gap-4 md:gap-6 overflow-x-auto no-scrollbar pb-9  scroll-smooth'>
         {products
           .filter((product) => product.isOnSale === true)
-          .slice(0, 4)
+
           .map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
 
       </div>
+
+      <button
+        onClick={() => navigate('/products')}
+        className='px-6 text-sm md:px-10 py-4 flex items-center justify-center bg-red-500 text-white  rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer'>
+        View All
+      </button>
     </div>
   )
 }

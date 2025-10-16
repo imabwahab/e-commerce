@@ -16,17 +16,19 @@ const HeroSection = () => {
       <div className='max-w-7xl mx-auto flex flex-col lg:flex-row gap-4 lg:gap-8'>
 
         {/* Categories Sidebar */}
-        <ul className='w-full lg:w-64 space-y-3 py-4'>
+        <ul className='w-full lg:w-64 space-y-3 py-4 '>
           {sidebarLinks.map((item, index) => (
             <Link
               key={index}
               to={`/products/${item.path}`}
-              className='flex items-center justify-between text-sm sm:text-base hover:text-gray-600 cursor-pointer transition-colors'>
+              className='flex items-center justify-between px-2 hover:bg-gray-100  text-sm sm:text-base hover:text-gray-600 cursor-pointer transition-colors'>
               {item.catName}
             </Link>
           ))}
 
         </ul>
+
+        <span className='w-4 hidden md:block  max-h-100 border-r-2 border-r-gray-400 '></span>
 
         {/* Hero Banner */}
         <div className='flex-1 bg-black text-white overflow-hidden'>

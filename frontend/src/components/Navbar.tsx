@@ -3,7 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose, IoIosSearch } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { navLinks } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import { RxAvatar } from "react-icons/rx";
@@ -13,6 +13,8 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const { wishList, navigate, cartItems, search, setSearch } = useContext(AppContext);
+
+  const { pathname } = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -48,9 +50,12 @@ const Navbar = () => {
               Shop Now
             </span>
           </p>
-          <button className="text-gray-300 hover:text-white text-xs border border-gray-600 px-3 py-1 rounded transition-colors duration-300 hover:border-white cursor-pointer">
-            English
-          </button>
+          <select className="text-gray-300 hover:text-white text-xs border border-gray-600 px-3 py-1 rounded transition-colors duration-300 hover:border-white cursor-pointer">
+            <option className="text-black  hover:bg-gray-200/10" value="englist">English</option>
+            <option className="text-black  hover:bg-gray-200/10" value="arabic">Arabic</option>
+            <option className="text-black  hover:bg-gray-200/10" value="urdu">Urdu</option>
+            <option className="text-black hover:bg-gray-200/10" value="french">French</option>
+          </select>
         </div>
       </div>
 
@@ -129,9 +134,9 @@ const Navbar = () => {
               {/* Profile Avatar Icon */}
               <button
                 onClick={() => setProfilePopup(!profilePopup)}
-                className=" text-red-600  rounded-full relative hover:text-red-600/90 transition-colors duration-300 cursor-pointer ">
+                className={`${(pathname === "/account") ? "bg-red-400 text-white": 'bg-white' } text-black/70 rounded-full relative hover:text-white/70 transition-colors duration-300 cursor-pointer `}
+              >
                 <RxAvatar className="w-7 h-7" />
-
                 <ul className={`${profilePopup ? "block" : 'hidden'} absolute top-10 right-0 bg-black/90 text-white shadow border border-gray-200 py-2.5 w-50 rounded-md text-sm z-40`}>
                   {['Manage My Account', 'My Order', 'My Cancellations', 'Logout'].map((item) => (
                     <li className='p-1.5 pl-3 hover:bg-primary/10 cursor-pointer'>
@@ -140,6 +145,8 @@ const Navbar = () => {
                   ))}
                 </ul>
               </button>
+
+
 
               {/* Mobile Menu Button */}
               <button
@@ -195,7 +202,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

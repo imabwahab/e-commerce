@@ -1,5 +1,5 @@
 import side_image from '../assets/about-side-image.png'
-import { services, teamMember } from '../assets/assets'
+import { services, stats, teamMember } from '../assets/assets'
 import ProfileCardServices from '../components/ProfileCardServices'
 
 const About = () => {
@@ -25,26 +25,26 @@ const About = () => {
 
       {/* Categories Grid */}
       <div className='mt-30 bg-white grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-10'>
-        {services.map((ser, index) => (
-          <div key={index} >
-            <div
-              key={index}
-              className='group bg-white border-2 border-gray-200 rounded-lg p-6 flex flex-col gap-4 items-center justify-center hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer min-h-[180px] min-w-[180px]'
-            >
-              <div className='w-20 h-20 flex items-center justify-center overflow-hidden'>
-                <img
-                  src={ser.image}
-                  className='w-full h-full object-cover  transition-transform duration-300'
-                  alt={ser.desc}
-                />
-              </div>
-              <h3 className=' font-semibold text-2xl text-gray-900 group-hover:text-red-500 transition-colors duration-300 text-center'>
-                {ser.number}K
-              </h3>
-              <h3 className='text-base font-medium text-gray-900 group-hover:text-red-500 transition-colors duration-300 text-center'>
-                {ser.desc}
-              </h3>
+        {stats.map((ser, index) => (
+
+          <div
+            key={index}
+            className='group bg-white border-2 border-gray-200 rounded-lg p-6 flex flex-col gap-4 items-center justify-center hover:border-red-500 hover:shadow-lg transition-all duration-300 cursor-pointer min-h-[180px] min-w-[180px]'
+          >
+            <div className='w-20 h-20 flex items-center justify-center overflow-hidden'>
+              <img
+                src={ser.image}
+                className='w-full h-full object-cover  transition-transform duration-300'
+                alt={ser.desc}
+              />
             </div>
+            <h3 className=' font-semibold text-2xl text-gray-900 group-hover:text-red-500 transition-colors duration-300 text-center'>
+              {ser.number}K
+            </h3>
+            <h3 className='text-base font-medium text-gray-900 group-hover:text-red-500 transition-colors duration-300 text-center'>
+              {ser.desc}
+            </h3>
+
           </div>
         ))}
       </div>

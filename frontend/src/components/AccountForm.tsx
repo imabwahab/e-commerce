@@ -1,6 +1,7 @@
-import { accountSchema, type AccountFormData } from '../schema/accountSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { accountSchema, type AccountFormData } from "../schema/accountSchema";
+import InputField from "../components/InputField";
 
 const AccountForm = () => {
   const {
@@ -32,9 +33,22 @@ const AccountForm = () => {
     });
   };
 
-  const handleCancel = () => {
-    reset(); // Reset to default values
-  };
+  const handleCancel = () => reset();
+
+  // Dynamic field configuration
+  const accountFields = [
+    { label: "First Name", name: "firstName", placeholder: "Md" },
+    { label: "Last Name", name: "lastName", placeholder: "Rimel" },
+    { label: "Email", name: "email", placeholder: "rimel1111@gmail.com" },
+    { label: "Address", name: "address", placeholder: "Kingstone, 5236, United State" },
+  ];
+
+  const passwordFields = [
+    { name: "currentPassword", placeholder: "Current Password", type: "password" },
+    { name: "newPassword", placeholder: "New Password", type: "password" },
+    { name: "confirmNewPassword", placeholder: "Confirm New Password", type: "password" },
+  ];
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -42,94 +56,29 @@ const AccountForm = () => {
     >
       <h3 className="font-semibold text-lg sm:text-xl">Edit Your Profile</h3>
 
-      {/* Name Fields */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 py-2 px-4 rounded-lg">
-        <div className="flex flex-col">
-          <label className="py-2 font-medium" htmlFor="firstName">
-            First Name
-          </label>
-          <input
-            {...register("firstName")}
-            placeholder="Md"
-            className="px-4 py-2 rounded bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500"
+      {/* Basic Info */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 py-2 px-2 md:px-4 rounded-lg">
+        {accountFields.map((field) => (
+          <InputField
+            key={field.name}
+            {...field}
+            register={register}
+            error={errors[field.name as keyof AccountFormData]}
           />
-          {errors.firstName && (
-            <p className="text-red-500 text-sm">{errors.firstName.message}</p>
-          )}
-        </div>
-
-        <div className="flex flex-col">
-          <label className="py-2 font-medium" htmlFor="lastName">
-            Last Name
-          </label>
-          <input
-            {...register("lastName")}
-            placeholder="Rimel"
-            className="px-4 py-2 rounded bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
-          {errors.lastName && (
-            <p className="text-red-500 text-sm">{errors.lastName.message}</p>
-          )}
-        </div>
+        ))}
       </div>
 
-      {/* Email & Address */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 py-2 px-4 rounded-lg">
-        <div className="flex flex-col">
-          <label className="py-2 font-medium" htmlFor="email">
-            Email
-          </label>
-          <input
-            {...register("email")}
-            placeholder="rimel1111@gmail.com"
-            className="px-4 py-2 rounded bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500"
+      {/* Password Section */}
+      <div className="flex flex-col gap-3 py-2 md:px-4 rounded-lg">
+        <h3 className="py-2 font-semibold text-base sm:text-lg">Password Changes</h3>
+        {passwordFields.map((field) => (
+          <InputField
+            key={field.name}
+            {...field}
+            register={register}
+            error={errors[field.name as keyof AccountFormData]}
           />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
-        </div>
-
-        <div className="flex flex-col">
-          <label className="py-2 font-medium" htmlFor="address">
-            Address
-          </label>
-          <input
-            {...register("address")}
-            placeholder="Kingstone, 5236, United State"
-            className="px-4 py-2 rounded bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
-          {errors.address && (
-            <p className="text-red-500 text-sm">{errors.address.message}</p>
-          )}
-        </div>
-      </div>
-
-      {/* Password Fields */}
-      <div className="flex flex-col gap-3 py-2 px-4 rounded-lg">
-        <h3 className="py-2 font-semibold text-base sm:text-lg">
-          Password Changes
-        </h3>
-        <input
-          type="password"
-          placeholder="Current Password"
-          {...register("currentPassword")}
-          className="px-4 py-2 rounded bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-        <input
-          type="password"
-          placeholder="New Password"
-          {...register("newPassword")}
-          className="px-4 py-2 rounded bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-        <input
-          type="password"
-          placeholder="Confirm New Password"
-          {...register("confirmNewPassword")}
-          className="px-4 py-2 rounded bg-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-        {errors.confirmNewPassword && (
-          <p className="text-red-500 text-sm">{errors.confirmNewPassword.message}</p>
-        )}
+        ))}
       </div>
 
       {/* Buttons */}
@@ -149,7 +98,7 @@ const AccountForm = () => {
         </button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default AccountForm
+export default AccountForm;

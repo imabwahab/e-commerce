@@ -33,7 +33,7 @@ export const navLinks: Navbar[] = [{
   name: "Contact",
   path: '/contact'
 }, {
-  name: "SignUp",
+  name: "Signup",
   path: '/signup'
 }]
 
@@ -47,7 +47,7 @@ import cat_gamepad from '../assets/Category-Gamepad.png'
 import cat_headphone from '../assets/Category-Headphone.png'
 import cat_watch from '../assets/Category-SmartWatch.png'
 
-
+// Cateogories
 interface Category {
   title: string,
   image: string,
@@ -60,27 +60,56 @@ export const categories: Category[] = [
   { title: ' Laptops', image: cat_computer, path: 'Laptops' },
   { title: 'Gaming', image: cat_gamepad, path: 'gaming' },
   { title: 'HeadPhones', image: cat_headphone, path: 'headphones' },
-  { title: 'SmartWatch', image: cat_watch, path: 'smartwatch' }
+  { title: 'SmartWatch', image: cat_watch, path: 'smartwatch' },
 
+  { title: 'Phones', image: cat_phone, path: 'phones' },
+  { title: "Camera", image: cat_camera, path: 'camera' },
+  { title: ' Laptops', image: cat_computer, path: 'Laptops' },
+  { title: 'Gaming', image: cat_gamepad, path: 'gaming' },
+  { title: 'HeadPhones', image: cat_headphone, path: 'headphones' },
+  { title: 'SmartWatch', image: cat_watch, path: 'smartwatch' }
 ];
 
-import service_1 from '../assets/Service-1.png'
-import service_2 from '../assets/Service-2.png'
-import service_3 from '../assets/Services-3.png'
-import service_4 from '../assets/Services-4.png'
+// Stats
+import stat_1 from '../assets/Stat-1.png'
+import stat_2 from '../assets/Stat-2.png'
+import stat_3 from '../assets/Stat-3.png'
+import stat_4 from '../assets/Stat-4.png'
 
-interface Service {
+
+// About section Stat interface
+interface Stat {
   number: number,
   desc: string,
   image: string
 }
 
+// Stats info
+export const stats: Stat[] = [
+  { number: 10.5, desc: 'Sallers active our site', image: stat_1 },
+  { number: 33, desc: 'Sallers active our site', image: stat_2 },
+  { number: 45.5, desc: 'Sallers active our site', image: stat_3 },
+  { number: 25, desc: 'Sallers active our site', image: stat_4 },
+];
+
+// Services images
+import service_1 from '../assets/Service-1.png'
+import service_2 from '../assets/Service-2.png'
+import service_3 from '../assets/Service-3.png'
+
+// Servies interface
+interface Service {
+  heading: string,
+  desc: string,
+  image: string
+}
+
 export const services: Service[] = [
-  { number: 10.5, desc: 'Sallers active our site', image: service_1 },
-  { number: 33, desc: 'Sallers active our site', image: service_2 },
-  { number: 45.5, desc: 'Sallers active our site', image: service_3 },
-  { number: 25, desc: 'Sallers active our site', image: service_4 },
+  {heading: "Free and fast delivery", desc: "Free delivery for all orders over $140", image: service_1},
+  {heading: "24/7 Customer service", desc: "Friendly 24/7 customer support", image: service_2},
+  {heading: "Money Back Gurantee", desc: "We reurn money within 30 days", image: service_3}
 ]
+
 
 export interface Member {
   name: string,
@@ -324,7 +353,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",
     description: "A classic green bomber jacket crafted with premium fabric for modern comfort and fit.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.7,
@@ -338,7 +367,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Black Quilted Bomber Jacket",
     description: "Stylish quilted bomber jacket designed for warmth and elegance.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.6,
@@ -352,7 +381,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Navy Blue Slim Fit Jacket",
     description: "Navy slim-fit jacket with adjustable cuffs and zipper pockets.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.5,
@@ -366,7 +395,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Grey Comfort Jacket",
     description: "Soft and warm jacket suitable for both casual and semi-formal occasions.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.3,
@@ -380,7 +409,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Olive Zippered Bomber",
     description: "Trendy olive bomber jacket made for comfort and lasting durability.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.4,
@@ -394,7 +423,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Black Slim Jacket",
     description: "Minimalist design black slim-fit jacket, versatile for all seasons.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.2,
@@ -408,7 +437,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Blue Zippered Jacket",
     description: "Stylish blue full-zip jacket with durable stitching and modern aesthetics.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.5,
@@ -422,7 +451,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Khaki Full-Zip Jacket",
     description: "Lightweight khaki jacket suitable for outdoor activities.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.6,
@@ -436,7 +465,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Grey Zippered Bomber Jacket",
     description: "A high-quality grey bomber jacket that provides both style and comfort.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.5,
@@ -450,7 +479,7 @@ export const dummyProducts: Product[] = [
     userId: "user_002",
     name: "Men Charcoal Slim Fit Jacket",
     description: "Modern slim-fit design with lightweight material for a perfect fit.",
-   category: "men-fashion",
+    category: "men-fashion",
     price: 120.5,
     offerPrice: 85.0,
     rating: 4.7,
