@@ -1,8 +1,8 @@
-import { useContext, useState, useEffect } from 'react'
-import { AppContext } from '../context/AppContext';
-import credit_cards from '../assets/credit-cards.png'
+import { useState, useEffect } from 'react';
+import credit_cards from '../assets/credit-cards.png';
 import toast from 'react-hot-toast';
 import type { OrderItems } from '../pages/Checkout';
+import { useAppSelector } from '../hooks';
 
 interface OrderSummaryProps {
   handleSubmit: (orderInfo: OrderItems[], paymentMethod: string, discount?: number) => void;
@@ -11,7 +11,7 @@ interface OrderSummaryProps {
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ handleSubmit, setOrderItems }) => {
 
-  const { cartItems, products } = useContext(AppContext);
+  const { cartItems, products } = useAppSelector((state) => state.app)
   const cart = Object.entries(cartItems);
 
   const [couponCode, setCouponCode] = useState<string>('');
@@ -41,7 +41,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ handleSubmit, setOrderItems
 
   const handleCouponCode = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (couponCode.toLowerCase() === 'algotix15') {
       setIsCouponApplied(true);
       toast.success('Coupon code applied - 15% off!');

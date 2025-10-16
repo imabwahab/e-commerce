@@ -1,12 +1,20 @@
+import { useMemo } from "react";
 import ProductCard from "../components/ProductCard";
-import { useContext } from "react";
-import { AppContext } from "../context/AppContext";
 import { ImFinder } from "react-icons/im";
 import ProductHeader from "../components/ProductHeader";
+import { useAppSelector } from "../hooks";
+
 
 const Products = () => {
 
-  const { filteredProducts } = useContext(AppContext);
+  const { products, search } = useAppSelector((store) => store.app);
+
+  // Applying search filtering
+  const filteredProducts = useMemo(() => {
+    return products.filter(product =>
+      product.name.toLowerCase().includes(search.toLowerCase())
+    )
+  }, [search, products]);
 
 
   return (

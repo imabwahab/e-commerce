@@ -1,12 +1,13 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 import ProductCard from "./ProductCard"
-import { useContext, useRef } from "react"
-import { AppContext } from "../context/AppContext"
+import { useRef } from "react"
+import { useAppSelector } from "../hooks"
+import { useNavigate } from "react-router-dom"
 
 const FlashSale = () => {
 
-  const { products, navigate } = useContext(AppContext);
-
+  const { products } = useAppSelector((state) => state.app);
+  const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleScrollLeft = () => {

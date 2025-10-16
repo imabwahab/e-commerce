@@ -1,13 +1,17 @@
-import { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
-
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FiMinus } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa6";
+import { useAppSelector } from '../hooks';
+import { addToCart, removeFromCart, deleteFromCart } from '../redux/appSlice';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Cart = () => {
-  const { products, cartItems, addToCart, removeFromCart, deleteFromCart, navigate } = useContext(AppContext);
+
+  const { products, cartItems } = useAppSelector((state) => state.app);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cart = Object.entries(cartItems);
 
   const totalItems = Object.values(cartItems).reduce((a, b) => a + b, 0);
@@ -91,13 +95,13 @@ const Cart = () => {
                   <div className="col-span-2 flex justify-center">
                     <div className='flex items-center gap-3 bg-gray-100 rounded-lg px-3 py-2'>
                       <button
-                        onClick={() => removeFromCart(product._id)}
+                        onClick={() => dispatch(removeFromCart(product._id))}
                         className='text-gray-600 hover:text-red-500 transition-colors'>
                         <FiMinus className='w-4 h-4' />
                       </button>
                       <span className='font-semibold text-gray-900 min-w-[20px] text-center'>{quantity}</span>
                       <button
-                        onClick={() => addToCart(product._id)}
+                        onClick={() => dispatch(addToCart(product._id))}
                         className='text-gray-600 hover:text-red-500 transition-colors'>
                         <FaPlus className='w-4 h-4' />
                       </button>
@@ -110,7 +114,7 @@ const Cart = () => {
 
                   <div className="col-span-1 flex justify-center">
                     <button
-                      onClick={() => deleteFromCart(product._id)}
+                      onClick={() => dispatch(deleteFromCart(product._id))}
                       className='text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-all'>
                       <FaTrash className='w-5 h-5' />
                     </button>
@@ -137,13 +141,13 @@ const Cart = () => {
                   <div className='flex justify-between items-center pt-4 border-t border-gray-200'>
                     <div className='flex items-center gap-3 bg-gray-100 rounded-lg px-3 py-2'>
                       <button
-                        onClick={() => removeFromCart(product._id)}
+                        onClick={() => dispatch(removeFromCart(product._id))}
                         className='text-gray-600 hover:text-red-500 transition-colors'>
                         <FiMinus className='w-4 h-4' />
                       </button>
                       <span className='font-semibold text-gray-900 min-w-[20px] text-center'>{quantity}</span>
                       <button
-                        onClick={() => addToCart(product._id)}
+                        onClick={() => dispatch(addToCart(product._id))}
                         className='text-gray-600  hover:text-red-500 transition-colors'>
                         <FaPlus className='w-4 h-4' />
                       </button>
@@ -154,7 +158,7 @@ const Cart = () => {
                     </p>
 
                     <button
-                      onClick={() => deleteFromCart(product._id)}
+                      onClick={() => dispatch(deleteFromCart(product._id))}
                       className='text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-all'>
                       <FaTrash className='w-5 h-5' />
                     </button>

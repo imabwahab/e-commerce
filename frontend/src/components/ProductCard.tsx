@@ -1,11 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import type { Product } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
+import { useAppSelector } from "../hooks";
+import { toggleWishList, addToCart, removeFromCart } from "../redux/appSlice";
+import { useDispatch } from "react-redux";
 
 interface ProductCardProps {
   product: Product
@@ -17,7 +19,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const navigate = useNavigate();
 
-  const { toggleWishList, wishList, cartItems, addToCart, removeFromCart } = useContext(AppContext);
+  const { wishList, cartItems } = useAppSelector((state) => state.app);
+  const dispatch = useDispatch();
+
+
 
   const inWishList = wishList[product._id] === true;
 
@@ -29,7 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const HandleFavorite = (id: string) => {
     setIsFavorite(!isFavorite);
-    toggleWishList(id)
+    dispatch(toggleWishList(id));
   }
 
   return (
@@ -76,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {!cartItems[product._id] ? (
             <button
               className="flex items-center cursor-pointer justify-center gap-2 w-full bg-black hover:bg-gray-900 active:bg-gray-800 h-12 text-white font-semibold transition-all duration-200 transform active:scale-[0.98]"
-              onClick={() => addToCart(product._id)}
+              onClick={() => dispatch(addToCart(product._id))}
             >
               <MdOutlineShoppingCart />
               Add To Cart
@@ -85,14 +90,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="flex items-center justify-center w-full bg-black h-12">
               <div className="flex items-center justify-between bg-white rounded-lg mx-4 px-1 py-1 shadow-inner">
                 <button
-                  onClick={() => removeFromCart(product._id)}
+                  onClick={() => dispatch(removeFromCart(product._id))}
                   className="flex items-center justify-center w-9 h-9 cursor-pointer text-xl font-bold text-gray-700 hover:bg-gray-100 active:bg-gray-200 rounded-md transition-all duration-150"
                 >
                   −
                 </button>
                 <span className="font-bold text-lg px-4 text-gray-800 min-w-[40px] text-center">{cartItems[product._id]}</span>
                 <button
-                  onClick={() => addToCart(product._id)}
+                  onClick={() => dispatch(addToCart(product._id))}
                   className="flex items-center justify-center w-9 h-9 cursor-pointer text-xl font-bold text-gray-700 hover:bg-gray-100 active:bg-gray-200 rounded-md transition-all duration-150"
                 >
                   +

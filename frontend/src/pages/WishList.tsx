@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { AppContext } from "../context/AppContext";
 import ProductCard from "../components/ProductCard";
 import { FaRegHeart } from "react-icons/fa";
+import { useAppSelector } from "../hooks";
 
 
 const WishList = () => {
 
-  const { products, wishList } = useContext(AppContext);
+  // const { products, wishList } = useContext(AppContext);
+  const { products, wishList } = useAppSelector((state) => state.app)
 
   const wishListProducts = products.filter((item) => wishList[item._id] === true);
 
